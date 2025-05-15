@@ -1,8 +1,23 @@
 package projeto._sem.agilizaVeiculos.entity.Usuario;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+
+@Entity
 public class UsuarioTelefone {
-   private int idTelefone;
-    private int idUsuario;
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int idTelefone;
+
+    @ManyToOne
+    @JoinColumn(name = "idUsuario")
+    private Usuario usuario;
+    
     private String telefone;
 
     public int getIdTelefone() {
@@ -13,12 +28,12 @@ public class UsuarioTelefone {
         this.idTelefone = idTelefone;
     }
 
-    public int getIdUsuario() {
-        return idUsuario;
+    public Usuario getUsuario() {
+        return usuario;
     }
 
-    public void setIdUsuario(int idUsuario) {
-        this.idUsuario = idUsuario;
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 
     public String getTelefone() {
@@ -28,6 +43,7 @@ public class UsuarioTelefone {
     public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
+
 
 
 }

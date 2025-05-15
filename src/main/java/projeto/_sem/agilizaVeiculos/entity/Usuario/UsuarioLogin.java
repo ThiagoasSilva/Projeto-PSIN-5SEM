@@ -1,9 +1,23 @@
 package projeto._sem.agilizaVeiculos.entity.Usuario;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+
+@Entity
 public class UsuarioLogin {
  
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idEmail;
-    private int idUsuario;
+
+    @ManyToOne
+    @JoinColumn(name = "idUsuario")
+    private Usuario usuario;
+    
     private String email;
     private String senha;
 
@@ -15,12 +29,12 @@ public class UsuarioLogin {
         this.idEmail = idEmail;
     }
 
-    public int getIdUsuario() {
-        return idUsuario;
+    public Usuario getUsuario() {
+        return usuario;
     }
 
-    public void setIdUsuario(int idUsuario) {
-        this.idUsuario = idUsuario;
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 
     public String getEmail() {
@@ -39,5 +53,5 @@ public class UsuarioLogin {
         this.senha = senha;
     }
 
-
+    
 }

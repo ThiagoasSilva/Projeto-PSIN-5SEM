@@ -1,11 +1,29 @@
 package projeto._sem.agilizaVeiculos.entity.Veiculo;
 
-import projeto._sem.agilizaVeiculos.Enuns.CategoriaVeiculo;
+import java.time.Year;
+import java.util.List;
 
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import projeto._sem.agilizaVeiculos.Enuns.CategoriaVeiculo;
+import projeto._sem.agilizaVeiculos.entity.Locacao.Locacao;
+
+@Entity
 public class Veiculo {
     
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idVeiculo;
+
+    @Enumerated(EnumType.STRING)
     private CategoriaVeiculo categoriaVeiculo;
+
     private String marca;
     private String modelo;
     private String cor;
@@ -14,10 +32,13 @@ public class Veiculo {
     private float pesoKg;
     private float capacidadeTanque; // Litros
     private int assentos;
-    private int anoFabricacao;
-    private int anoModelo;
+    private Year anoFabricacao;
+    private Year anoModelo;
     private String placa;
     private String chassi;
+
+    @OneToMany(mappedBy = "veiculo", cascade = CascadeType.ALL)
+    private List<Locacao> locacao;
 
     public int getIdVeiculo() {
         return idVeiculo;
@@ -99,19 +120,19 @@ public class Veiculo {
         this.assentos = assentos;
     }
 
-    public int getAnoFabricacao() {
+    public Year getAnoFabricacao() {
         return anoFabricacao;
     }
 
-    public void setAnoFabricacao(int anoFabricacao) {
+    public void setAnoFabricacao(Year anoFabricacao) {
         this.anoFabricacao = anoFabricacao;
     }
 
-    public int getAnoModelo() {
+    public Year getAnoModelo() {
         return anoModelo;
     }
 
-    public void setAnoModelo(int anoModelo) {
+    public void setAnoModelo(Year anoModelo) {
         this.anoModelo = anoModelo;
     }
 
@@ -130,6 +151,15 @@ public class Veiculo {
     public void setChassi(String chassi) {
         this.chassi = chassi;
     }
+
+    public List<Locacao> getLocacao() {
+        return locacao;
+    }
+
+    public void setLocacao(List<Locacao> locacao) {
+        this.locacao = locacao;
+    }
+
 
 
     
