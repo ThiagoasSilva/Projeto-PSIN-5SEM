@@ -26,7 +26,7 @@ public class UsuarioService {
         return usuarioRepository.findAll(sort);
     }
 
-    public List<Usuario> modificarUsuario() {
+    public List<Usuario> modificarUsuario(Usuario usuario) {
         usuarioRepository.save(usuario);
         return listarUsuario();
     }
