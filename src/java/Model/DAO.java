@@ -21,11 +21,11 @@ public class DAO {
     Connection con;
     PreparedStatement pst;
     ResultSet rs;
-//?
+
     public void abrirBanco() throws SQLException {
         try {
-            Class.forName("com.mysql.jdbc.Driver");
-            String url = "jdbc:mysql://localhost/agilizaveiculos";
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            String url = "jdbc:mysql://localhost/agilizaVeiculos";
             String user = "root";
             String senha = "root";
             con = (Connection) DriverManager.getConnection(url, user, senha);

@@ -4,6 +4,8 @@
  */
 package Controller;
 
+import Enuns.Acesso;
+
 /**
  *
  * @author thiagosilva
@@ -12,6 +14,7 @@ public class UsuarioLogin {
     
     private int idEmail;
     private int idUsuario;
+    private Acesso acesso; //admin ou cliente
     private String email;
     private String senha;
 

@@ -13,7 +13,6 @@ import java.time.LocalDate;
  */
 public class Usuario {
     private int idUsuario;
-    private Acesso acesso; //admin ou cliente
     private String cpf;
     private String rg;
     private String nome; // na database recebe nome completo
