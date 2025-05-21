@@ -27,14 +27,6 @@ public class Usuario {
         this.idUsuario = idUsuario;
     }
 
-    public Acesso getAcesso() {
-        return acesso;
-    }
-
-    public void setAcesso(Acesso acesso) {
-        this.acesso = acesso;
-    }
-
     public String getCpf() {
         return cpf;
     }

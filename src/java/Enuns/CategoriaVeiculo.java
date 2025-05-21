@@ -9,5 +9,5 @@ package Enuns;
  * @author thiagosilva
  */
 public enum CategoriaVeiculo {
-    Carro, Moto
+    Carro, Motocicleta, Caminhão, Outros
 }

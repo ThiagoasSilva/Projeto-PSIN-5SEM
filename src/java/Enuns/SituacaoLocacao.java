@@ -9,5 +9,5 @@ package Enuns;
  * @author thiagosilva
  */
 public enum SituacaoLocacao {
-    Disponível, Indisponível, Locado, Reservado, Em manutenção, Outros
+   Disponível, Indisponível, Locado, Reservado, Em, manutenção, Outros
 }

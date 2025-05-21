@@ -18,7 +18,7 @@ public class Locacao {
     private int idVeiculo;
     private int idUsuario;
     private SituacaoLocacao situacaoLocacao;
-    private LocalDate dataLocacao;
+    private LocalDateTime dataLocacao;
     private LocalDateTime dataDevolvido;
     private LocalDateTime dataDevolucao;
     private boolean devolvido;
@@ -55,11 +55,11 @@ public class Locacao {
         this.situacaoLocacao = situacaoLocacao;
     }
 
-    public LocalDate getDataLocacao() {
+    public LocalDateTime getDataLocacao() {
         return dataLocacao;
     }
 
-    public void setDataLocacao(LocalDate dataLocacao) {
+    public void setDataLocacao(LocalDateTime dataLocacao) {
         this.dataLocacao = dataLocacao;
     }
 
@@ -86,7 +86,6 @@ public class Locacao {
     public void setDevolvido(boolean devolvido) {
         this.devolvido = devolvido;
     }
-    
-    
-    
+
+
 }

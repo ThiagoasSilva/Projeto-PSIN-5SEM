@@ -9,5 +9,5 @@ package Enuns;
  * @author thiagosilva
  */
 public enum FormaPagamento {
-    Débito, Crédito, Pix, Boleto, Bitcoin, Dinheiro
+    Débito, Crédito, Pix, Dinheiro, Transfência
 }

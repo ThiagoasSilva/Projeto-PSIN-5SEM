@@ -9,5 +9,5 @@ package Enuns;
  * @author thiagosilva
  */
 public enum Acesso {
-    Administrador, cliente
+    Administrador, Cliente
 }
