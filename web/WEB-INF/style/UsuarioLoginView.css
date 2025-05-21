@@ -1,0 +1,101 @@
+body{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.main-login{
+    width: 100vw;
+    height: 100vh;
+    background-color: #16203b;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.left-login{
+    width: 50vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.left-login > h1{
+    font-size: 3vw;
+    color: aliceblue;
+}
+
+.left-login-img{
+    width: 35vw;
+}
+
+.right-login{
+    width: 50vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-login{
+    width: 60%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 30px 35px;
+    background-color: #161a3a;
+    border-radius: 20px;
+    box-shadow: 0px 10px 40px #020205;
+}
+
+.card-login > h1{
+    color: aliceblue;
+    font-weight: 800;
+    margin: 0;
+}
+
+.textfield{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.textfield > input{
+    width: 100%;
+    border: none;
+    border-radius: 10px;
+    padding: 15px;
+    background: #1d2949;
+    color: aliceblue;
+    font-size: 12pt;
+    box-shadow: 0px 10px 40px #0e0e20;
+    outline: none;
+    box-sizing: border-box;
+}
+
+.textfield > label{
+    color: aliceblue;
+    margin-bottom: 10px;
+    margin: 15px;
+}
+
+.textfield > input ::placeholder{
+    color: aliceblue;
+}
+
+.btn-login{
+    width: 100%;
+    padding: 15px 10px;
+    margin: 25px;
+    border: none;
+    border-radius: 8px;
+    outline: none;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: aliceblue;
+    background-color: #09091f;
+    box-shadow: 0px 10px 40px -12px #150e3a;
+}
