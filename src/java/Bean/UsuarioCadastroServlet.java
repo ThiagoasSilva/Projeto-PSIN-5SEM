@@ -4,7 +4,7 @@
  */
 package Bean;
 
-import Controller.UsuarioLogin;
+import Controller.Usuario;
 import Model.LoginDao;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -33,17 +33,21 @@ public class UsuarioCadastroServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
+           
             String email = request.getParameter("email");
             String senha = request.getParameter("senha");
             
-            UsuarioLogin usuarioLogin = new UsuarioLogin();
-            usuarioLogin.setEmail(email);
-            usuarioLogin.setSenha(senha);
+            Usuario usuario = new Usuario();
+            usuario.setEmail(email);
+            usuario.setSenha(senha);
+            
+            out.println("<h1>" + usuario.getEmail()+ "</h1>");
+            out.println("<h1>" + usuario.getSenha()+ "</h1>");
             
             LoginDao loginDao = new LoginDao();
-            loginDao.inserir(usuarioLogin);
+            loginDao.inserir(usuario);
             
-            request.getRequestDispatcher("UsuarioLoginView.jsp").forward(request, response);
+            request.getRequestDispatcher("UsuarioView.jsp").forward(request, response);
             
             
             

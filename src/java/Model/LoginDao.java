@@ -4,7 +4,7 @@
  */
 package Model;
 
-import Controller.UsuarioLogin;
+import Controller.Usuario;
 import java.sql.PreparedStatement;
 
 /**
@@ -12,13 +12,13 @@ import java.sql.PreparedStatement;
  * @author thiagosilva
  */
 public class LoginDao extends DAO{
-    public void inserir(UsuarioLogin usuarioLogin)    {
+        public void inserir(Usuario usuario)    {
         try{
             abrirBanco();
-            String query = "INSERT INTO UsuarioLogin(email, senha) VALUES (?, ?)";
+            String query = "INSERT INTO Usuario(idUsuario, email, senha) VALUES (null, ?, ?)";
             pst = (PreparedStatement) con.prepareStatement(query);
-            pst.setString(1, usuarioLogin.getEmail());
-            pst.setString(1, usuarioLogin.getEmail());
+            pst.setString(1, usuario.getEmail());
+            pst.setString(2, usuario.getEmail());
             pst.execute();
             fecharBanco();
         } catch(Exception e){

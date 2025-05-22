@@ -4,7 +4,7 @@
  */
 package Bean;
 
-import Controller.UsuarioLogin;
+import Controller.Usuario;
 import Enuns.Acesso;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -38,9 +38,9 @@ public class UsuarioLoginServlet extends HttpServlet {
             String email = request.getParameter("email");
             String senha = request.getParameter("senha");
             
-            UsuarioLogin usuarioLogin = new UsuarioLogin();
-            usuarioLogin.setEmail(email);
-            usuarioLogin.setSenha(senha);
+            Usuario usuario = new Usuario();
+            usuario.setEmail(email);
+            usuario.setSenha(senha);
             
             
         }

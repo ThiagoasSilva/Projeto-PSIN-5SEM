@@ -13,6 +13,9 @@ import java.time.LocalDate;
  */
 public class Usuario {
     private int idUsuario;
+    private Acesso acesso;
+    private String email;
+    private String senha;
     private String cpf;
     private String rg;
     private String nome; // na database recebe nome completo
@@ -25,6 +28,30 @@ public class Usuario {
 
     public void setIdUsuario(int idUsuario) {
         this.idUsuario = idUsuario;
+    }
+
+    public Acesso getAcesso() {
+        return acesso;
+    }
+
+    public void setAcesso(Acesso acesso) {
+        this.acesso = acesso;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
     }
 
     public String getCpf() {
@@ -66,7 +93,5 @@ public class Usuario {
     public void setNascimento(LocalDate nascimento) {
         this.nascimento = nascimento;
     }
-    
-    
-    
+        
 }

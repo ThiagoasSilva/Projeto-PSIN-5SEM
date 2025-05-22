@@ -22,7 +22,8 @@
         </div>
         <div class="right-login">
             <div class="card-login">
-                <h1>Cadastre-se</h1>
+                <h1>Cadastre-se</h1
+                <<form action="AgilizaCadUsuario" method="post">
 
                         <!--
                         <div class="textfield">
@@ -37,16 +38,17 @@
                     -->
                     <div class="textfield">
                         <label for="email">Email</label>
-                        <input type="email" name="email" placeholder="Insira seu Email">
+                        <input type="email" id="email" name="email" placeholder="Insira seu Email">
                     </div>
                     
                     <div class="textfield">
                         <label for="senha">Senha</label>
-                        <input type="password" name="senha" placeholder="Insira sua Senha">
+                        <input type="password" id="senha" name="senha" placeholder="Insira sua Senha">
                     </div>
                     
                     <!-- <button class="btn-login">Cadastrar</button>-->
                     <input type="submit" class="btn-login" value="Cadastrar">
+                    </form>
                 </div>
             </div>
 
