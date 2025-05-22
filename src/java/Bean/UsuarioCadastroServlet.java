@@ -29,7 +29,7 @@ public class UsuarioCadastroServlet extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, Exception {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
@@ -47,7 +47,7 @@ public class UsuarioCadastroServlet extends HttpServlet {
             LoginDao loginDao = new LoginDao();
             loginDao.inserir(usuario);
             
-            request.getRequestDispatcher("UsuarioView.jsp").forward(request, response);
+            request.getRequestDispatcher("UsuarioLoginView.jsp").forward(request, response);
             
             
             

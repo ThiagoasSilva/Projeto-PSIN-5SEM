@@ -23,7 +23,7 @@
         <div class="right-login">
             <div class="card-login">
                 <h1>Cadastre-se</h1
-                <<form action="AgilizaCadUsuario" method="post">
+                <form action="AgilizaCadUsuario" method="post">
 
                         <!--
                         <div class="textfield">

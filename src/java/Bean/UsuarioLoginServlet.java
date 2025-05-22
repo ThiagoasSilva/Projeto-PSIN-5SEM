@@ -4,14 +4,14 @@
  */
 package Bean;
 
-import Controller.Usuario;
-import Enuns.Acesso;
-import java.io.IOException;
-import java.io.PrintWriter;
+import Controller.Usuario; // Importa Usuario do pacote Controller
+import Model.LoginDao; // Importa LoginDao do pacote Model
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession; // Necessário para gerenciar a sessão
+import java.io.IOException;
 
 /**
  *
