@@ -1,11 +1,18 @@
+<%-- 
+    Document   : UsuarioCadastroView
+    Created on : 21 de mai. de 2025, 21:15:04
+    Author     : thiagosilva
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastre-se</title>
-    <link rel="stylesheet" href="style/UsuarioLoginView.css">
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+   <title>Cadastre-se</title>
+   <link rel="stylesheet" href="style/UsuarioCadastroView.css">
 </head>
+
 <body>
     <div class="main-login">
         <div class="left-login">
@@ -17,7 +24,7 @@
             <div class="card-login">
                 <h1>Cadastre-se</h1>
 
-                        
+                        <!--
                         <div class="textfield">
                             <label for="cpf">CPF</label>
                             <input type="text" name="cpf" placeholder="Insira seu CPF">
@@ -27,7 +34,7 @@
                             <label for="nome">Nome</label>
                         <input type="text" name="nome" placeholder="Insira seu Nome">
                     </div>
-                    
+                    -->
                     <div class="textfield">
                         <label for="email">Email</label>
                         <input type="email" name="email" placeholder="Insira seu Email">
@@ -38,11 +45,8 @@
                         <input type="password" name="senha" placeholder="Insira sua Senha">
                     </div>
                     
-                    <div class="textfield">
-                        <label for="ConfirmaSenha">Confirme sua senha</label>
-                        <input type="password" name="ConfirmaSenha" placeholder="confirme sua Senha">
-                    </div>
-                    <button class="btn-login">Cadastrar</button>
+                    <!-- <button class="btn-login">Cadastrar</button>-->
+                    <input type="submit" class="btn-login" value="Cadastrar">
                 </div>
             </div>
 
