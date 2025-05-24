@@ -1,7 +1,8 @@
 package Model;
 
 import Controller.Usuario; // Mantém no pacote Controller, conforme sua solicitação
-import jakarta.resource.cci.ResultSet;
+import java.sql.ResultSet;
+import org.mindrot.jbcrypt.BCrypt;
 
 /**
  *
@@ -17,7 +18,7 @@ public class LoginDao extends DAO {
             pst = con.prepareStatement(query);
             pst.setString(1, u.getCpf());
             pst.setString(2, u.getEmail());
-            pst.setString(3, senhaCriptografada());
+            pst.setString(3, senhaCriptografada);
 
             int linhasAfetadas = pst.executeUpdate();
 
@@ -41,7 +42,7 @@ public class LoginDao extends DAO {
 
             if (rs.next()) {
                 String senhaHashBanco = rs.getString("senha");
-
+                    
                 if (BCrypt.checkpw(u.getSenha(), senhaHashBanco)) {
                     usuarioPesquisado = new Usuario();
                     usuarioPesquisado.setIdUsuario(rs.getInt("idUsuario"));
