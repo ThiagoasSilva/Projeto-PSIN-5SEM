@@ -4,20 +4,20 @@
  */
 package Bean;
 
-import Controller.Usuario; // Importa Usuario do pacote Controller
-import Model.LoginDao; // Importa LoginDao do pacote Model
+import Controller.Usuario;
+import Model.LoginDao;
+import java.io.IOException;
+import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession; // Necessário para gerenciar a sessão
-import java.io.IOException;
 
 /**
  *
  * @author thiagosilva
  */
-public class UsuarioLoginServlet extends HttpServlet {
+public class ServletUsuarioLogin extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,16 +33,36 @@ public class UsuarioLoginServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            
-            // String acesso = request.getParameter("Administrador");
-            String email = request.getParameter("email");
-            String senha = request.getParameter("senha");
-            
-            Usuario usuario = new Usuario();
-            usuario.setEmail(email);
-            usuario.setSenha(senha);
-            
-            
+          
+          /*out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet ServletUsuarioLogin</title>");
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet ServletUsuarioLogin at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
+            */
+          String cpf = request.getParameter("cpf");
+          String email = request.getParameter("email");
+          String senha = request.getParameter("senha");
+          
+          Usuario usuario = new Usuario();
+          usuario.setCpf(cpf);
+          usuario.setEmail(email);
+          usuario.setSenha(senha);
+          
+          LoginDao loginDao = new LoginDao();
+          boolean sucesso = loginDao.inserirLogin(usuario);
+          
+          if(sucesso) {
+              response.sendRedirect("UsuarioLoginView.html?mensagem=Cadastro%20realizado%20com%20sucesso!");              
+          } else {
+              response.sendRedirect("UsuarioCadastroView.jsp?mensagem=Cadastro%20inválido!");              
+          }
+          
+          
         }
     }
 
