@@ -25,7 +25,7 @@ public class DAO {
     public void abrirBanco() throws SQLException {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            String url = "jdbc:mysql://localhost/agilizaVeiculos";
+            String url = "jdbc:mysql://localhost/agilizaVeiculos?useSSL=false&allowPublicKeyRetrieval=true";
             String user = "root";
             String senha = "root";
             con = (Connection) DriverManager.getConnection(url, user, senha);
