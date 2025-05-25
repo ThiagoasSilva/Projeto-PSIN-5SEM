@@ -82,16 +82,16 @@ public class ServletUsuarioCadastro extends HttpServlet {
                 }
             }
             usuario.setNascimento(nascimentoSqlDate);
-        }
-       LoginDao loginDao = new LoginDao();
-       boolean sucesso = loginDao.inserirLogin(u);
+            LoginDao loginDao = new LoginDao();
+            boolean sucesso = loginDao.inserirLogin(usuario);
 
-        if (sucesso) {
-            // Redireciona com mensagem de sucesso na URL
-            response.sendRedirect("login.jsp?mensagem=Cadastro%20realizado%20com%20sucesso!");
-        } else {
-            // Redireciona com mensagem de erro na URL
-            response.sendRedirect("cadastro.jsp?mensagem=Erro%20ao%20realizar%20o%20cadastro");
+            if (sucesso) {
+                // Redireciona com mensagem de sucesso na URL
+                response.sendRedirect("login.jsp?mensagem=Cadastro%20realizado%20com%20sucesso!");
+            } else {
+                // Redireciona com mensagem de erro na URL
+                response.sendRedirect("cadastro.jsp?mensagem=Erro%20ao%20realizar%20o%20cadastro");
+            }
         }
     }
 
