@@ -91,16 +91,17 @@ public class LoginDao extends DAO {
     public boolean alterarUsuario(Usuario u) {
         try {
             abrirBanco();
-            String query = "UPDATE usuario set cpf = ?, email = ?, senha = ?, rg = ?, nome = ?, idade = ? , nascimento = ?, acesso = ?";
+            String query = "UPDATE usuario set cpf = ?, email = ?, rg = ?, nome = ?, idade = ? , nascimento = ?, acesso = ? where idUsuario = ?";
             pst = con.prepareStatement(query);
             pst.setString(1, u.getCpf());
             pst.setString(2, u.getEmail());
-            //pst.setString(3, senhaCriptografada); recuperaçã
+            //pst.setString(3, senhaCriptografada); recuperação sera em pagina diferente 
             pst.setString(3, u.getRg());
             pst.setString(4, u.getNome());
             pst.setInt(5, u.getIdade());
             pst.setDate(6, (Date) u.getNascimento()); // **Alterado para setDate**
             pst.setString(7, u.getAcesso().name());
+            pst.setInt(8, u.getIdUsuario());
 
             int linhasAfetadas = pst.executeUpdate();
 

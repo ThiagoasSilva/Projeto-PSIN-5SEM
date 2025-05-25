@@ -3,13 +3,10 @@
     Created on : 25 de mai. de 2025, 05:15:33
     Author     : thiagosilva
 --%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="Controller.Usuario"%>
 <%@page import="Enuns.Acesso"%>
-<%@page import="java.sql.Date"%>
-<%@page import="java.time.LocalDate"%>
-<%@page import="java.time.format.DateTimeFormatter"%>
+<%@page import="java.text.SimpleDateFormat"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -35,13 +32,12 @@
                     <%
                         boolean logado = session.getAttribute("nome") != null;
                     %>
-
-                    <% if (logado) {%>
+                    <% if (logado) { %>
                     <a href="DeslogarUsuario" class="btn btn-logout">Sair</a>
-                    <%} else {%>
+                    <% } else { %>
                     <a href="UsuarioLoginView.jsp" class="btn btn-login-nav">Login</a>
                     <a href="UsuarioCadastroView.jsp" class="btn btn-secondary btn-register-nav">Cadastre-se</a>
-                    <%}%>
+                    <% } %>
                 </div>
             </nav>
         </header>
@@ -52,22 +48,18 @@
                     <h2>Alterar Meus Dados</h2>
                 </div>
 
-                <%-- Exibir mensagem de erro ou sucesso --%>
-                <% String mensagemErro = (String) request.getAttribute("mensagemErro");
+                <%-- Mensagens de feedback --%>
+                <%
+                    String mensagemErro = (String) request.getAttribute("mensagemErro");
                     String mensagemSucesso = (String) request.getAttribute("mensagemSucesso");
                 %>
                 <% if (mensagemErro != null) {%>
-                <div class="info-message error-message">
-                    <%= mensagemErro%>
-                </div>
+                <div class="info-message error-message"><%= mensagemErro%></div>
                 <% } else if (mensagemSucesso != null) {%>
-                <div class="info-message success-message">
-                    <%= mensagemSucesso%>
-                </div>
+                <div class="info-message success-message"><%= mensagemSucesso%></div>
                 <% } %>
 
                 <%
-                    // Recupera o objeto Usuario do request (vindo de um Servlet)
                     Usuario usuario = (Usuario) request.getAttribute("usuario");
                     String email = "";
                     String cpf = "";
@@ -75,7 +67,7 @@
                     String nome = "";
                     int idade = 0;
                     String nascimentoStr = "";
-                    String acesso = ""; // Para o radio button, pegaremos o nome da enum
+                    String acesso = "";
 
                     if (usuario != null) {
                         email = usuario.getEmail() != null ? usuario.getEmail() : "";
@@ -83,22 +75,18 @@
                         rg = usuario.getRg() != null ? usuario.getRg() : "";
                         nome = usuario.getNome() != null ? usuario.getNome() : "";
                         idade = usuario.getIdade();
+
+                        // Formata data no padrão yyyy-MM-dd para o input[type="date"]
                         if (usuario.getNascimento() != null) {
-                            // Formata a data para o input type="date" (yyyy-MM-dd)
-                            nascimentoStr = usuario.getNascimento().toLocalDate().format(DateTimeFormatter.ISO_LOCAL_DATE);
+                            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                            nascimentoStr = sdf.format(usuario.getNascimento());
                         }
-                        // Pega o nome da enum Acesso para preencher o radio button
+
                         acesso = usuario.getAcesso() != null ? usuario.getAcesso().name() : "";
-                    } else {
-                        // Se o objeto usuario for null, pode ser que o usuário não esteja logado
-                        // ou o Servlet de carregamento não foi acessado.
-                        // Redirecionar para login ou exibir mensagem de erro.
-                        // Para este exemplo, deixamos os campos vazios.
                     }
                 %>
 
                 <form action="AltUsuario" method="post" class="cadastro-form">
-                    <%-- idUsuario não é um campo de entrada, mas pode ser passado como hidden --%>
                     <% if (usuario != null) {%>
                     <input type="hidden" name="idUsuario" value="<%= usuario.getIdUsuario()%>">
                     <% }%>
@@ -112,12 +100,12 @@
                         <label for="email">Email:</label>
                         <input type="email" id="email" name="email" value="<%= email%>" placeholder="seuemail@exemplo.com" required>
                     </div>
-
+<!--
                     <div class="textfield">
                         <label for="senha">Nova Senha (deixe em branco para não alterar):</label>
                         <input type="password" id="senha" name="senha" placeholder="********">
                     </div>
-
+-->
                     <div class="textfield">
                         <label for="cpf">CPF:</label>
                         <input type="text" id="cpf" name="cpf" value="<%= cpf%>" placeholder="000.000.000-00" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" title="Formato: 000.000.000-00" required>

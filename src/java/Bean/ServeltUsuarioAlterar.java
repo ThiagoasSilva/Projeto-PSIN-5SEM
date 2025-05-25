@@ -13,6 +13,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -36,77 +37,84 @@ public class ServeltUsuarioAlterar extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
+            HttpSession session = request.getSession();
+            Integer idUsuario = (Integer) session.getAttribute("idUsuario");
+
+            if (idUsuario == null) {
+                response.sendRedirect("UsuarioLoginView.jsp?mensagem=Faça%20login%20novamente");
+                return;
+            }
+
             String cpf = request.getParameter("cpf");
             String email = request.getParameter("email");
-          //  String senha = request.getParameter("senha");
             String rg = request.getParameter("rg");
             String nome = request.getParameter("nome");
             String idadeStr = request.getParameter("idade");
             String nascimentoStr = request.getParameter("nascimento");
-
-            Usuario usuario = new Usuario();
-
-            usuario.setCpf(cpf);
-            usuario.setEmail(email);
-          //usuario.setSenha(senha);
-            usuario.setRg(rg);
-            usuario.setNome(nome);
-          //usuario.setAcesso("cliente");
             String acessoStr = request.getParameter("acesso");
 
-            // --- Início: Tratamento e Set do Acesso ---
-            Acesso acesso = null; // Inicialize como null
-            if (acessoStr == null || acessoStr.isEmpty()) {
-                request.setAttribute("mensagemErro", "Tipo de Acesso deve ser selecionado.");
-                request.getRequestDispatcher("UsuarioCadastroView.jsp").forward(request, response);
-                return;
-            }
-
-            try {
-                acesso = Acesso.fromString(acessoStr);
-            } catch (IllegalArgumentException e) {
-                request.setAttribute("mensagemErro", "Tipo de acesso inválido selecionado: " + acessoStr + ". Por favor, escolha 'Cliente' ou 'Administrador'.");
-                System.err.println("Erro ao converter string de acesso '" + acessoStr + "' para enum Acesso: " + e.getMessage());
-                request.getRequestDispatcher("UsuarioCadastroView.jsp").forward(request, response);
-                return;
-            }
+            Usuario usuario = new Usuario();
+            usuario.setIdUsuario(idUsuario);
+            usuario.setCpf(cpf);
+            usuario.setEmail(email);
+            usuario.setRg(rg);
+            usuario.setNome(nome);
 
             int idade = 0;
             if (idadeStr != null && !idadeStr.isEmpty()) {
-                idade = Integer.parseInt(idadeStr);
+                try {
+                    idade = Integer.parseInt(idadeStr);
+                } catch (NumberFormatException e) {
+                    request.setAttribute("mensagemErro", "Idade inválida.");
+                    request.setAttribute("usuario", usuario);
+                    request.getRequestDispatcher("UsuarioAlterarView.jsp").forward(request, response);
+                    return;
+                }
             }
             usuario.setIdade(idade);
 
             Date nascimentoSqlDate = null;
             if (nascimentoStr != null && !nascimentoStr.isEmpty()) {
                 try {
-                    LocalDate localDateNascimento = LocalDate.parse(nascimentoStr);
-
-                    // --- ALTERNATIVA DE CONVERSÃO PARA JAVA 7 OU COMO UMA OPÇÃO MAIS EXPLÍCITA ---
-                    // 1. Converte LocalDate para java.util.Date (com um instante no tempo)
-                    java.util.Date utilDate = java.util.Date.from(localDateNascimento.atStartOfDay(ZoneId.systemDefault()).toInstant());
-
-                    // 2. Converte java.util.Date para java.sql.Date
-                    nascimentoSqlDate = new Date(utilDate.getTime());
-                    // OU, uma forma mais direta de LocalDate para java.sql.Date (se seu Java for 8+)
-                    // nascimentoSqlDate = java.sql.Date.valueOf(localDateNascimento); // A linha que você está tentando fazer funcionar
-
-                } catch (Exception e) { // Pegar uma exceção mais genérica por enquanto, para debug
-                    System.out.println("Erro ao converter data de nascimento: " + e.getMessage());
-                    // Dependendo do seu requisito, você pode setar nascimentoSqlDate como null,
-                    // ou retornar um erro para o usuário.
+                    LocalDate localDate = LocalDate.parse(nascimentoStr);
+                    nascimentoSqlDate = Date.valueOf(localDate);
+                } catch (Exception e) {
+                    request.setAttribute("mensagemErro", "Data de nascimento inválida.");
+                    request.setAttribute("usuario", usuario);
+                    request.getRequestDispatcher("UsuarioAlterarView.jsp").forward(request, response);
+                    return;
                 }
             }
             usuario.setNascimento(nascimentoSqlDate);
+
+            Acesso acesso;
+            if (acessoStr == null || acessoStr.isEmpty()) {
+                request.setAttribute("mensagemErro", "Tipo de Acesso deve ser selecionado.");
+                request.setAttribute("usuario", usuario);
+                request.getRequestDispatcher("UsuarioAlterarView.jsp").forward(request, response);
+                return;
+            }
+
+            try {
+                acesso = Acesso.fromString(acessoStr);
+            } catch (IllegalArgumentException e) {
+                request.setAttribute("mensagemErro", "Tipo de acesso inválido selecionado: " + acessoStr);
+                request.setAttribute("usuario", usuario);
+                request.getRequestDispatcher("UsuarioAlterarView.jsp").forward(request, response);
+                return;
+            }
+
             usuario.setAcesso(acesso);
-            
+
             LoginDao loginDao = new LoginDao();
             boolean sucesso = loginDao.alterarUsuario(usuario);
 
             if (sucesso) {
                 response.sendRedirect("UsuarioAlterarView.jsp?mensagem=Usuario%20alterado%20com%20sucesso!");
             } else {
-                response.sendRedirect("UsuarioAlterarView.jsp?mensagem=Erro%20ao%20alterar%20usuario");
+                request.setAttribute("mensagemErro", "Erro ao alterar usuário.");
+                request.setAttribute("usuario", usuario);
+                request.getRequestDispatcher("UsuarioAlterarView.jsp").forward(request, response);
             }
         }
     }
