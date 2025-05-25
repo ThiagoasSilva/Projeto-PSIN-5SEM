@@ -36,7 +36,7 @@
 
                         <div class="textfield">
                             <label for="nome">Nome Completo</label>
-                            <input type="text" id="nome" name="nome" placeholder="Insira seu nome completo" required>
+                            <input type="text" id="nome" name="nome" placeholder="Insira seu nome completo">
                         </div>
 
                         <div class="textfield">
@@ -51,22 +51,22 @@
 
                         <div class="textfield">
                             <label for="cpf">CPF</label>
-                            <input type="text" id="cpf" name="cpf" placeholder="000.000.000-00" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" title="Formato: 000.000.000-00" required>
+                            <input type="text" id="cpf" name="cpf" placeholder="000.000.000-00" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" title="Formato: 000.000.000-00">
                         </div>
 
                         <div class="textfield">
                             <label for="rg">RG</label>
-                            <input type="text" id="rg" name="rg" placeholder="00.000.000-0" required>
+                            <input type="text" id="rg" name="rg" placeholder="00.000.000-0" >
                         </div>
 
                         <div class="textfield">
                             <label for="idade">Idade</label>
-                            <input type="number" id="idade" name="idade" placeholder="Sua idade" min="0" max="150" required>
+                            <input type="number" id="idade" name="idade" placeholder="Sua idade" min="0" max="150" >
                         </div>
 
                         <div class="textfield">
                             <label for="nascimento">Data de Nascimento</label>
-                            <input type="date" id="nascimento" name="nascimento" required>
+                            <input type="date" id="nascimento" name="nascimento" >
                         </div>
 
                         <button type="submit" class="btn-cadastro">Cadastrar</button>
