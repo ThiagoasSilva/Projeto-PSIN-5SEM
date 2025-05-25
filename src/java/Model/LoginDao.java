@@ -88,45 +88,66 @@ public class LoginDao extends DAO {
         return usuarioAutenticado;
     }
 
-    public Usuario buscarIdUsuario(int id) throws Exception {
-        Usuario usuario = new Usuario();
-        
-        String query = "SELECT idUsuario, nome, email, cpf, rg, idade, nascimento, acesso FROM usuario WHERE idUsuario = ?";
+    public boolean alterarUsuario(Usuario u) {
+        try {
+            abrirBanco();
+            String query = "UPDATE usuario set cpf = ?, email = ?, senha = ?, rg = ?, nome = ?, idade = ? , nascimento = ?, acesso = ?";
+            pst = con.prepareStatement(query);
+            pst.setString(1, u.getCpf());
+            pst.setString(2, u.getEmail());
+            //pst.setString(3, senhaCriptografada); recuperaçã
+            pst.setString(3, u.getRg());
+            pst.setString(4, u.getNome());
+            pst.setInt(5, u.getIdade());
+            pst.setDate(6, (Date) u.getNascimento()); // **Alterado para setDate**
+            pst.setString(7, u.getAcesso().name());
 
-        try (Connection con = getConnection(); 
-                PreparedStatement pst = con.prepareStatement(sql)) {
+            int linhasAfetadas = pst.executeUpdate();
 
-            pst.setInt(1, id);
+            fecharBanco();
+            return linhasAfetadas > 0;
+        } catch (Exception e) {
+            System.out.println("Erro ao fechar recursos (alterarUsuario): " + e.getMessage());
+            return false;
+        }
+    }
 
-            try (ResultSet rs = pst.executeQuery()) {
-                if (rs.next()) {
-                    usuario = new Usuario();
-                    usuario.setIdUsuario(rs.getInt("idUsuario"));
-                    usuario.setNome(rs.getString("nome"));
-                    usuario.setEmail(rs.getString("email"));
-                    // segrança de senha
-                    usuario.setCpf(rs.getString("cpf"));
-                    usuario.setRg(rs.getString("rg"));
-                    usuario.setIdade(rs.getInt("idade"));
-                    usuario.setNascimento(rs.getDate("nascimento"));
+    public Usuario buscarIdUsuario(int idUsuario) {
 
-                    String acessoStrDoBanco = rs.getString("acesso");
-                    try {
-                        usuario.setAcesso(Acesso.fromString(acessoStrDoBanco));
-                    } catch (IllegalArgumentException e) {
-                        System.err.println("Aviso: Valor de acesso inválido no banco de dados para o usuário ID " + id + ": '" + acessoStrDoBanco + "'. Definindo acesso como Cliente.");
-                        usuario.setAcesso(Acesso.Cliente);
-                    }
+        try {
+            Usuario usuario = new Usuario();
+            abrirBanco();
+            String query = "SELECT idUsuario, nome, email, cpf, rg, idade, nascimento, acesso FROM usuario WHERE idUsuario = ?";
+            pst = con.prepareStatement(query);
+            pst.setInt(1, idUsuario);
+            ResultSet rs = pst.executeQuery();
+            if (rs.next()) {
+                usuario = new Usuario();
+                usuario.setIdUsuario(rs.getInt("idUsuario"));
+                usuario.setNome(rs.getString("nome"));
+                usuario.setEmail(rs.getString("email"));
+                usuario.setCpf(rs.getString("cpf"));
+                usuario.setRg(rs.getString("rg"));
+                usuario.setIdade(rs.getInt("idade"));
+                usuario.setNascimento(rs.getDate("nascimento"));
+
+                String acessoStrDoBanco = rs.getString("acesso");
+                try {
+                    usuario.setAcesso(Acesso.fromString(acessoStrDoBanco));
+                } catch (IllegalArgumentException e) {
+                    System.err.println("Aviso: Valor de acesso inválido no banco de dados para o usuário ID " + idUsuario + ": '" + acessoStrDoBanco + "'. Definindo acesso como Cliente.");
+                    usuario.setAcesso(Acesso.Cliente);
                 }
+                return usuario;
             }
-        } catch (SQLException e) {
+            fecharBanco();
+        } catch (Exception e) {
             System.err.println("Erro SQL ao buscar usuário por ID: " + e.getMessage());
             e.printStackTrace();
-            throw e;
         } finally {
             System.out.println("Execução da Query de busca por ID fechada");
         }
-        return usuario;
+
+        return null;
     }
-}
 }

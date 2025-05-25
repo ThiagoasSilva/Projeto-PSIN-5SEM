@@ -16,6 +16,10 @@
         <servlet-name>ServletUsuarioAlterar</servlet-name>
         <servlet-class>Bean.ServletUsuarioDados</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ServeltUsuarioAlterar</servlet-name>
+        <servlet-class>Bean.ServeltUsuarioAlterar</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ServletUsuarioCadastro</servlet-name>
         <url-pattern>/CadUsuario</url-pattern>
@@ -29,7 +33,7 @@
         <url-pattern>/DeslogarUsuario</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>ServletUsuarioDados</servlet-name>
-        <url-pattern>/DadosUsuario</url-pattern>
+        <servlet-name>ServeltUsuarioAlterar</servlet-name>
+        <url-pattern>/AltUsuario</url-pattern>
     </servlet-mapping>
 </web-app>

@@ -97,7 +97,7 @@
                     }
                 %>
 
-                <form action="AlterarUsuarioServlet" method="post" class="cadastro-form">
+                <form action="AltUsuario" method="post" class="cadastro-form">
                     <%-- idUsuario não é um campo de entrada, mas pode ser passado como hidden --%>
                     <% if (usuario != null) {%>
                     <input type="hidden" name="idUsuario" value="<%= usuario.getIdUsuario()%>">

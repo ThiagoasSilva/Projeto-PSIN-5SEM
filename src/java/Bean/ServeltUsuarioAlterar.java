@@ -13,16 +13,15 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.sql.Date;
 import java.time.LocalDate;
 import java.time.ZoneId;
-import java.time.format.DateTimeParseException;
-import java.sql.Date;
 
 /**
  *
  * @author thiagosilva
  */
-public class ServletUsuarioCadastro extends HttpServlet {
+public class ServeltUsuarioAlterar extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,11 +36,9 @@ public class ServletUsuarioCadastro extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-
             String cpf = request.getParameter("cpf");
             String email = request.getParameter("email");
-            String senha = request.getParameter("senha");
+          //  String senha = request.getParameter("senha");
             String rg = request.getParameter("rg");
             String nome = request.getParameter("nome");
             String idadeStr = request.getParameter("idade");
@@ -51,10 +48,10 @@ public class ServletUsuarioCadastro extends HttpServlet {
 
             usuario.setCpf(cpf);
             usuario.setEmail(email);
-            usuario.setSenha(senha);
+          //usuario.setSenha(senha);
             usuario.setRg(rg);
             usuario.setNome(nome);
-            //usuario.setAcesso("cliente");
+          //usuario.setAcesso("cliente");
             String acessoStr = request.getParameter("acesso");
 
             // --- Início: Tratamento e Set do Acesso ---
@@ -102,15 +99,14 @@ public class ServletUsuarioCadastro extends HttpServlet {
             }
             usuario.setNascimento(nascimentoSqlDate);
             usuario.setAcesso(acesso);
+            
             LoginDao loginDao = new LoginDao();
-            boolean sucesso = loginDao.inserirLogin(usuario);
+            boolean sucesso = loginDao.alterarUsuario(usuario);
 
             if (sucesso) {
-
-                response.sendRedirect("UsuarioLoginView.jsp?mensagem=Cadastro%20realizado%20com%20sucesso!");
+                response.sendRedirect("UsuarioAlterarView.jsp?mensagem=Usuario%20alterado%20com%20sucesso!");
             } else {
-
-                response.sendRedirect("UsuarioCadastroView.jsp?mensagem=Erro%20ao%20realizar%20o%20cadastro");
+                response.sendRedirect("UsuarioAlterarView.jsp?mensagem=Erro%20ao%20alterar%20usuario");
             }
         }
     }
@@ -153,4 +149,5 @@ public class ServletUsuarioCadastro extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+
 }
