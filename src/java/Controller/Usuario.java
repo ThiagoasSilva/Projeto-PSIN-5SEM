@@ -5,22 +5,23 @@
 package Controller;
 
 import Enuns.Acesso;
-import java.time.LocalDate;
+import java.util.Date;
 
 /**
  *
  * @author thiagosilva
  */
 public class Usuario {
+
     private int idUsuario;
-    private Acesso acesso;
+    private String Acesso;
     private String email;
     private String senha;
-    private String cpf;
-    private String rg;
-    private String nome; // na database recebe nome completo
-    private int idade;
-    private LocalDate nascimento;
+    private String cpf; // formatar cpf no banco ou frontend
+    private String rg; // formatar rg ''
+    private String nome; // Nome completo na database
+    private int idade; // chegar se 
+    private Date nascimento; // Alterado para java.sql.Date pq pega somente dia, mes e ano que é o objetivo do atributo.
 
     public int getIdUsuario() {
         return idUsuario;
@@ -30,12 +31,12 @@ public class Usuario {
         this.idUsuario = idUsuario;
     }
 
-    public Acesso getAcesso() {
-        return acesso;
+    public String getAcesso() {
+        return Acesso;
     }
 
-    public void setAcesso(Acesso acesso) {
-        this.acesso = acesso;
+    public void setAcesso(String Acesso) {
+        this.Acesso = Acesso;
     }
 
     public String getEmail() {
@@ -86,12 +87,13 @@ public class Usuario {
         this.idade = idade;
     }
 
-    public LocalDate getNascimento() {
+    public Date getNascimento() {
         return nascimento;
     }
 
-    public void setNascimento(LocalDate nascimento) {
+    public void setNascimento(Date nascimento) {
         this.nascimento = nascimento;
     }
-        
+
+    
 }
