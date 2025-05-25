@@ -30,7 +30,7 @@
                     %>
 
                     <% if (logado) {%>
-                    <a href="ServeletDeslogar" class="btn btn-logout">Sair</a>
+                    <a href="DeslogarUsuario" class="btn btn-logout">Sair</a>
                     <%} else {%>
                     <a href="UsuarioLoginView.jsp" class="btn btn-login-nav">Login</a>
                     <a href="UsuarioCadastroView.jsp" class="btn btn-secondary btn-register-nav">Cadastre-se</a>

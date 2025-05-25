@@ -8,6 +8,10 @@
         <servlet-name>ServletUsuarioLogin</servlet-name>
         <servlet-class>Bean.ServletUsuarioLogin</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ServletUsuarioDeslogar</servlet-name>
+        <servlet-class>Bean.ServletUsuarioDeslogar</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ServletUsuarioCadastro</servlet-name>
         <url-pattern>/CadUsuario</url-pattern>
@@ -15,5 +19,9 @@
     <servlet-mapping>
         <servlet-name>ServletUsuarioLogin</servlet-name>
         <url-pattern>/LoginUsuario</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletUsuarioDeslogar</servlet-name>
+        <url-pattern>/DeslogarUsuario</url-pattern>
     </servlet-mapping>
 </web-app>
