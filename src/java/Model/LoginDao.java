@@ -1,6 +1,7 @@
 package Model;
 
 import Controller.Usuario;
+import Enuns.Acesso;
 import java.sql.Date;
 import java.sql.ResultSet;
 import org.mindrot.jbcrypt.BCrypt;
@@ -24,7 +25,7 @@ public class LoginDao extends DAO {
             pst.setString(5, u.getNome());
             pst.setInt(6, u.getIdade());
             pst.setDate(7, (Date) u.getNascimento()); // **Alterado para setDate**
-            pst.setString(8, u.getAcesso());
+            pst.setString(8, u.getAcesso().name());
 
             int linhasAfetadas = pst.executeUpdate();
 
@@ -33,7 +34,7 @@ public class LoginDao extends DAO {
             System.out.println("Erro SQL ao inserir usuário: " + e.getMessage());
             e.printStackTrace();
             return false;
-            
+
         } finally {
             try {
                 fecharBanco();
@@ -45,13 +46,13 @@ public class LoginDao extends DAO {
 
     public Usuario validarLogin(String email, String senhaDigitada) {
         Usuario usuarioAutenticado = new Usuario();
-        
+
         try {
             abrirBanco();
             String query = "SELECT idUsuario, cpf, email, senha, rg, nome, idade, nascimento, acesso FROM usuario WHERE email = ?";
             pst = con.prepareStatement(query);
             pst.setString(1, email);
-            
+
             ResultSet rs = pst.executeQuery();
 
             if (rs.next()) {
@@ -66,7 +67,8 @@ public class LoginDao extends DAO {
                     usuarioAutenticado.setNome(rs.getString("nome"));
                     usuarioAutenticado.setIdade(rs.getInt("idade"));
                     usuarioAutenticado.setNascimento(rs.getDate("nascimento")); // **Alterado para getDate**
-                    usuarioAutenticado.setAcesso(rs.getString("acesso"));
+                    usuarioAutenticado.setAcesso(Acesso.fromString(rs.getString("acesso")));
+
                 }
             }
 

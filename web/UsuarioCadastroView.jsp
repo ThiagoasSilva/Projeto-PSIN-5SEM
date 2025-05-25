@@ -29,11 +29,11 @@
                               <div class="textfield radio-group">
                                 <label>Tipo de Acesso:</label>
                                 <div class="radio-options">
-                                    <input type="radio" id="acesso_cliente" name="acesso" value="CLIENTE" checked>
-                                    <label for="acesso_cliente">Cliente</label>
+                                    <input type="radio" id="cliente" name="acesso" value="Cliente" checked>
+                                    <label for="cliente">Cliente</label>
                                     
-                                    <input type="radio" id="acesso_admin" name="acesso" value="ADMIN">
-                                    <label for="acesso_admin">Admin</label>
+                                    <input type="radio" id="admin" name="acesso" value="Admin">
+                                    <label for="admin">Admin</label>
                                 </div>
                             </div>
                                 

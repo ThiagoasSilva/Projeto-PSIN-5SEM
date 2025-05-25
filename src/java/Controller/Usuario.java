@@ -14,7 +14,7 @@ import java.util.Date;
 public class Usuario {
 
     private int idUsuario;
-    private String Acesso;
+    private Acesso acesso; // tratamento de dados no login dao, servlet e enum
     private String email;
     private String senha;
     private String cpf; // formatar cpf no banco ou frontend
@@ -31,12 +31,12 @@ public class Usuario {
         this.idUsuario = idUsuario;
     }
 
-    public String getAcesso() {
-        return Acesso;
+    public Acesso getAcesso() {
+        return acesso;
     }
 
-    public void setAcesso(String Acesso) {
-        this.Acesso = Acesso;
+    public void setAcesso(Acesso acesso) {
+        this.acesso = acesso;
     }
 
     public String getEmail() {
@@ -95,5 +95,4 @@ public class Usuario {
         this.nascimento = nascimento;
     }
 
-    
 }
