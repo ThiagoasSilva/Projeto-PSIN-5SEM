@@ -49,6 +49,7 @@ public class ServletUsuarioLogin extends HttpServlet {
                 HttpSession session = request.getSession();
                 session.setAttribute("email", usuarioBuscado.getEmail());
                 session.setAttribute("idUsuario", usuarioBuscado.getIdUsuario());
+                session.setAttribute("nome", usuarioBuscado.getNome());
                 request.getRequestDispatcher("index.jsp?login%20bem%20sussedido").forward(request, response);
             } else {
                 request.getRequestDispatcher("UsuarioLoginView.jsp?login%20invalido").forward(request, response);
