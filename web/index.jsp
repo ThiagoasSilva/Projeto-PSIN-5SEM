@@ -96,19 +96,5 @@
         <footer>
             <p>&copy; 2025 Agiliza Veículos. Todos os direitos reservados.</p>
         </footer>
-í
-        <!-- <script>
-            document.addEventListener('DOMContentLoaded', function () {
-                const mobileMenu = document.getElementById('mobile-menu');
-                const navLinks = document.querySelector('.nav-links');
-                const navAuthButtons = document.querySelector('.nav-auth-buttons');
-
-                mobileMenu.addEventListener('click', function () {
-                    navLinks.classList.toggle('active');
-                    navAuthButtons.classList.toggle('active');
-                    mobileMenu.classList.toggle('active');
-                });
-            });
-        </script> -->
     </body>
 </html>
