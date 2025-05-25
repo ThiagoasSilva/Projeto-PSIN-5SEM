@@ -11,13 +11,13 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Cadastre-se</title>
-        <link rel="stylesheet" href="style/UsuarioLoginView.css">
+        <link rel="stylesheet" href="assets/style/UsuarioLoginView.css">
     </head>
 
     <body>
 
         <%
-            String mensagem = request.getParameter("mensagem"); // Mensagens da URL (ex: após cadastro)
+            String mensagem = request.getParameter("mensagem");
             if (mensagem != null && !mensagem.isEmpty()) {
         %>
         <div class="message-display" style="color: green; margin-bottom: 15px; text-align: center; font-weight: bold;">
@@ -25,7 +25,7 @@
         </div>
         <%
             }
-            String mensagemErroLogin = (String) request.getAttribute("mensagemErro"); // Mensagens do Servlet via forward
+            String mensagemErroLogin = (String) request.getAttribute("mensagemErro");
             if (mensagemErroLogin != null && !mensagemErroLogin.isEmpty()) {
         %>
         <div class="message-display" style="color: red; margin-bottom: 15px; text-align: center; font-weight: bold;">
@@ -38,7 +38,7 @@
         <div class="main-login">
             <div class="left-login">
                 <h1>Entre com sua conta</h1>
-                <img src="img/login-img.svg" class="left-login-img" alt="Ilustração de correção de gramática">
+                <img src="assets/img/login-img.svg" class="left-login-img" alt="Ilustração de correção de gramática">
             </div>
             <div class="right-login">
                 <div class="card-login">

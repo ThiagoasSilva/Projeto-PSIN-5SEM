@@ -6,7 +6,7 @@ package Bean;
 
 import Controller.Usuario;
 import Enuns.Acesso;
-import Model.LoginDao;
+import Model.ManterUsuario;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -15,7 +15,6 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.time.LocalDate;
 import java.time.ZoneId;
-import java.time.format.DateTimeParseException;
 import java.sql.Date;
 
 /**
@@ -37,7 +36,6 @@ public class ServletUsuarioCadastro extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
 
             String cpf = request.getParameter("cpf");
             String email = request.getParameter("email");
@@ -54,11 +52,8 @@ public class ServletUsuarioCadastro extends HttpServlet {
             usuario.setSenha(senha);
             usuario.setRg(rg);
             usuario.setNome(nome);
-            //usuario.setAcesso("cliente");
             String acessoStr = request.getParameter("acesso");
-
-            // --- Início: Tratamento e Set do Acesso ---
-            Acesso acesso = null; // Inicialize como null
+            Acesso acesso = null;
             if (acessoStr == null || acessoStr.isEmpty()) {
                 request.setAttribute("mensagemErro", "Tipo de Acesso deve ser selecionado.");
                 request.getRequestDispatcher("UsuarioCadastroView.jsp").forward(request, response);
@@ -85,25 +80,18 @@ public class ServletUsuarioCadastro extends HttpServlet {
                 try {
                     LocalDate localDateNascimento = LocalDate.parse(nascimentoStr);
 
-                    // --- ALTERNATIVA DE CONVERSÃO PARA JAVA 7 OU COMO UMA OPÇÃO MAIS EXPLÍCITA ---
-                    // 1. Converte LocalDate para java.util.Date (com um instante no tempo)
                     java.util.Date utilDate = java.util.Date.from(localDateNascimento.atStartOfDay(ZoneId.systemDefault()).toInstant());
 
-                    // 2. Converte java.util.Date para java.sql.Date
                     nascimentoSqlDate = new Date(utilDate.getTime());
-                    // OU, uma forma mais direta de LocalDate para java.sql.Date (se seu Java for 8+)
-                    // nascimentoSqlDate = java.sql.Date.valueOf(localDateNascimento); // A linha que você está tentando fazer funcionar
 
-                } catch (Exception e) { // Pegar uma exceção mais genérica por enquanto, para debug
+                } catch (Exception e) {
                     System.out.println("Erro ao converter data de nascimento: " + e.getMessage());
-                    // Dependendo do seu requisito, você pode setar nascimentoSqlDate como null,
-                    // ou retornar um erro para o usuário.
                 }
             }
             usuario.setNascimento(nascimentoSqlDate);
             usuario.setAcesso(acesso);
-            LoginDao loginDao = new LoginDao();
-            boolean sucesso = loginDao.inserirLogin(usuario);
+            ManterUsuario manterUsuario = new ManterUsuario();
+            boolean sucesso = manterUsuario.inserirLogin(usuario);
 
             if (sucesso) {
 

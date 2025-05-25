@@ -10,8 +10,8 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Cadastrar Veículo - Agiliza Veículos</title>
-        <link rel="stylesheet" href="style/index.css"/> <%-- Utiliza o CSS da index --%>
-        <link rel="stylesheet" href="style/VeiculoCadastroView.css"/> <%-- CSS específico para formulários --%>
+        <link rel="stylesheet" href="assets/style/index.css"/> 
+        <link rel="stylesheet" href="assets/style/VeiculoCadastroView.css"/>
     </head>
     <body>
         <header>
@@ -47,19 +47,18 @@
                     <h2>Cadastrar Veículo</h2>
                 </div>
 
-                <%-- Exibir mensagem de erro ou sucesso --%>
                 <% String mensagemErro = (String) request.getAttribute("mensagemErro");
-                   String mensagemSucesso = (String) request.getAttribute("mensagemSucesso");
+                    String mensagemSucesso = (String) request.getAttribute("mensagemSucesso");
                 %>
-                <% if (mensagemErro != null) { %>
-                    <div class="info-message error-message">
-                        <%= mensagemErro %>
-                    </div>
-                <% } else if (mensagemSucesso != null) { %>
-                    <div class="info-message success-message">
-                        <%= mensagemSucesso %>
-                    </div>
-                <% } %>
+                <% if (mensagemErro != null) {%>
+                <div class="info-message error-message">
+                    <%= mensagemErro%>
+                </div>
+                <% } else if (mensagemSucesso != null) {%>
+                <div class="info-message success-message">
+                    <%= mensagemSucesso%>
+                </div>
+                <% }%>
 
                 <form action="CadastrarVeiculoServlet" method="post" class="cadastro-form">
                     <div class="textfield">
@@ -116,12 +115,12 @@
 
                     <div class="textfield">
                         <label for="anoFabricacao">Ano de Fabricação:</label>
-                        <input type="number" id="anoFabricacao" name="anoFabricacao" min="1900" max="<%= java.time.Year.now().getValue() %>" required>
+                        <input type="number" id="anoFabricacao" name="anoFabricacao" min="1900" max="<%= java.time.Year.now().getValue()%>" required>
                     </div>
 
                     <div class="textfield">
                         <label for="anoModelo">Ano do Modelo:</label>
-                        <input type="number" id="anoModelo" name="anoModelo" min="1900" max="<%= java.time.Year.now().getValue() + 1 %>" required>
+                        <input type="number" id="anoModelo" name="anoModelo" min="1900" max="<%= java.time.Year.now().getValue() + 1%>" required>
                     </div>
 
                     <div class="textfield">

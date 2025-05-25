@@ -5,7 +5,7 @@
 package Bean;
 
 import Controller.Usuario;
-import Model.LoginDao;
+import Model.ManterUsuario;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -33,7 +33,7 @@ public class ServletUsuarioLogin extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
+     
             String email = request.getParameter("email");
             String senha = request.getParameter("senha");
 
@@ -41,9 +41,9 @@ public class ServletUsuarioLogin extends HttpServlet {
             usuario.setEmail(email);
             usuario.setSenha(senha);
 
-            LoginDao loginDao = new LoginDao();
+            ManterUsuario manterUsuario = new ManterUsuario();
 
-            Usuario usuarioBuscado = loginDao.validarLogin(email, senha);
+            Usuario usuarioBuscado = manterUsuario.validarLogin(email, senha);
 
             if (usuarioBuscado.getEmail() != null) {
                 HttpSession session = request.getSession();

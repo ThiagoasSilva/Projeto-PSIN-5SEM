@@ -10,14 +10,14 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Cadastre-se</title>
-        <link rel="stylesheet" href="style/UsuarioCadastroView.css">
+        <link rel="stylesheet" href="assets/style/UsuarioCadastroView.css">
     </head>
 
     <body>
         <div class="main-login">
             <div class="left-login">
                 <h1>Faça seu cadastro como cliente!</h1>
-                <img src="img/login-img.svg" class="left-login-img" alt="Ilustração">
+                <img src="assets/img/login-img.svg" class="left-login-img" alt="Ilustração">
             </div>
             <div class="right-login">
                 <div class="card-login">

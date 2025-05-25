@@ -10,7 +10,7 @@ import org.mindrot.jbcrypt.BCrypt;
  *
  * @author thiagosilva
  */
-public class LoginDao extends DAO {
+public class ManterUsuario extends DAO {
 
     public boolean inserirLogin(Usuario u) {
         try {

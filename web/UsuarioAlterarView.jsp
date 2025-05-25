@@ -12,8 +12,8 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Alterar Dados do Usuário - Agiliza Veículos</title>
-        <link rel="stylesheet" href="style/index.css"/>
-        <link rel="stylesheet" href="style/VeiculoCadastroView.css"/>
+        <link rel="stylesheet" href="assets/style/index.css"/>
+        <link rel="stylesheet" href="assets/style/VeiculoCadastroView.css"/>
     </head>
     <body>
         <header>
@@ -48,7 +48,6 @@
                     <h2>Alterar Meus Dados</h2>
                 </div>
 
-                <%-- Mensagens de feedback --%>
                 <%
                     String mensagemErro = (String) request.getAttribute("mensagemErro");
                     String mensagemSucesso = (String) request.getAttribute("mensagemSucesso");
@@ -100,12 +99,7 @@
                         <label for="email">Email:</label>
                         <input type="email" id="email" name="email" value="<%= email%>" placeholder="seuemail@exemplo.com" required>
                     </div>
-<!--
-                    <div class="textfield">
-                        <label for="senha">Nova Senha (deixe em branco para não alterar):</label>
-                        <input type="password" id="senha" name="senha" placeholder="********">
-                    </div>
--->
+
                     <div class="textfield">
                         <label for="cpf">CPF:</label>
                         <input type="text" id="cpf" name="cpf" value="<%= cpf%>" placeholder="000.000.000-00" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" title="Formato: 000.000.000-00" required>

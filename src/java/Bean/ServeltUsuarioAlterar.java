@@ -6,7 +6,7 @@ package Bean;
 
 import Controller.Usuario;
 import Enuns.Acesso;
-import Model.LoginDao;
+import Model.ManterUsuario;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -37,6 +37,7 @@ public class ServeltUsuarioAlterar extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
+
             HttpSession session = request.getSession();
             Integer idUsuario = (Integer) session.getAttribute("idUsuario");
 
@@ -106,8 +107,8 @@ public class ServeltUsuarioAlterar extends HttpServlet {
 
             usuario.setAcesso(acesso);
 
-            LoginDao loginDao = new LoginDao();
-            boolean sucesso = loginDao.alterarUsuario(usuario);
+            ManterUsuario manterUsuario = new ManterUsuario();
+            boolean sucesso = manterUsuario.alterarUsuario(usuario);
 
             if (sucesso) {
                 response.sendRedirect("UsuarioAlterarView.jsp?mensagem=Usuario%20alterado%20com%20sucesso!");
