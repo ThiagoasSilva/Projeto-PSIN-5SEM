@@ -13,15 +13,16 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+import java.sql.Date;
 import java.time.LocalDate;
 import java.time.ZoneId;
-import java.sql.Date;
 
 /**
  *
  * @author thiagosilva
  */
-public class ServletUsuarioCadastro extends HttpServlet {
+public class AlterarUsuarioServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,68 +38,84 @@ public class ServletUsuarioCadastro extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
 
+            HttpSession session = request.getSession();
+            Integer idUsuario = (Integer) session.getAttribute("idUsuario");
+
+            if (idUsuario == null) {
+                response.sendRedirect("UsuarioLoginView.jsp?mensagem=Faça%20login%20novamente");
+                return;
+            }
+
             String cpf = request.getParameter("cpf");
             String email = request.getParameter("email");
-            String senha = request.getParameter("senha");
             String rg = request.getParameter("rg");
             String nome = request.getParameter("nome");
             String idadeStr = request.getParameter("idade");
             String nascimentoStr = request.getParameter("nascimento");
+            String acessoStr = request.getParameter("acesso");
 
             Usuario usuario = new Usuario();
-
+            usuario.setIdUsuario(idUsuario);
             usuario.setCpf(cpf);
             usuario.setEmail(email);
-            usuario.setSenha(senha);
             usuario.setRg(rg);
             usuario.setNome(nome);
-            String acessoStr = request.getParameter("acesso");
-            Acesso acesso = null;
-            if (acessoStr == null || acessoStr.isEmpty()) {
-                request.setAttribute("mensagemErro", "Tipo de Acesso deve ser selecionado.");
-                request.getRequestDispatcher("UsuarioCadastroView.jsp").forward(request, response);
-                return;
-            }
-
-            try {
-                acesso = Acesso.fromString(acessoStr);
-            } catch (IllegalArgumentException e) {
-                request.setAttribute("mensagemErro", "Tipo de acesso inválido selecionado: " + acessoStr + ". Por favor, escolha 'Cliente' ou 'Administrador'.");
-                System.err.println("Erro ao converter string de acesso '" + acessoStr + "' para enum Acesso: " + e.getMessage());
-                request.getRequestDispatcher("UsuarioCadastroView.jsp").forward(request, response);
-                return;
-            }
 
             int idade = 0;
             if (idadeStr != null && !idadeStr.isEmpty()) {
-                idade = Integer.parseInt(idadeStr);
+                try {
+                    idade = Integer.parseInt(idadeStr);
+                } catch (NumberFormatException e) {
+                    request.setAttribute("mensagemErro", "Idade inválida.");
+                    request.setAttribute("usuario", usuario);
+                    request.getRequestDispatcher("UsuarioAlterarView.jsp").forward(request, response);
+                    return;
+                }
             }
             usuario.setIdade(idade);
 
             Date nascimentoSqlDate = null;
             if (nascimentoStr != null && !nascimentoStr.isEmpty()) {
                 try {
-                    LocalDate localDateNascimento = LocalDate.parse(nascimentoStr);
-
-                    java.util.Date utilDate = java.util.Date.from(localDateNascimento.atStartOfDay(ZoneId.systemDefault()).toInstant());
-
-                    nascimentoSqlDate = new Date(utilDate.getTime());
-
+                    LocalDate localDate = LocalDate.parse(nascimentoStr);
+                    nascimentoSqlDate = Date.valueOf(localDate);
                 } catch (Exception e) {
-                    System.out.println("Erro ao converter data de nascimento: " + e.getMessage());
+                    request.setAttribute("mensagemErro", "Data de nascimento inválida.");
+                    request.setAttribute("usuario", usuario);
+                    request.getRequestDispatcher("UsuarioAlterarView.jsp").forward(request, response);
+                    return;
                 }
             }
             usuario.setNascimento(nascimentoSqlDate);
+
+            Acesso acesso;
+            if (acessoStr == null || acessoStr.isEmpty()) {
+                request.setAttribute("mensagemErro", "Tipo de Acesso deve ser selecionado.");
+                request.setAttribute("usuario", usuario);
+                request.getRequestDispatcher("UsuarioAlterarView.jsp").forward(request, response);
+                return;
+            }
+
+            try {
+                acesso = Acesso.fromString(acessoStr);
+            } catch (IllegalArgumentException e) {
+                request.setAttribute("mensagemErro", "Tipo de acesso inválido selecionado: " + acessoStr);
+                request.setAttribute("usuario", usuario);
+                request.getRequestDispatcher("UsuarioAlterarView.jsp").forward(request, response);
+                return;
+            }
+
             usuario.setAcesso(acesso);
+
             ManterUsuario manterUsuario = new ManterUsuario();
-            boolean sucesso = manterUsuario.inserirLogin(usuario);
+            boolean sucesso = manterUsuario.alterarUsuario(usuario);
 
             if (sucesso) {
-
-                response.sendRedirect("UsuarioLoginView.jsp?mensagem=Cadastro%20realizado%20com%20sucesso!");
+                response.sendRedirect("UsuarioAlterarView.jsp?mensagem=Usuario%20alterado%20com%20sucesso!");
             } else {
-
-                response.sendRedirect("UsuarioCadastroView.jsp?mensagem=Erro%20ao%20realizar%20o%20cadastro");
+                request.setAttribute("mensagemErro", "Erro ao alterar usuário.");
+                request.setAttribute("usuario", usuario);
+                request.getRequestDispatcher("UsuarioAlterarView.jsp").forward(request, response);
             }
         }
     }
@@ -141,4 +158,5 @@ public class ServletUsuarioCadastro extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+
 }

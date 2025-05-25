@@ -1,39 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="6.0" xmlns="https://jakarta.ee/xml/ns/jakartaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd">
     <servlet>
-        <servlet-name>ServletUsuarioCadastro</servlet-name>
-        <servlet-class>Bean.ServletUsuarioCadastro</servlet-class>
+        <servlet-name>CadastroUsuarioServlet</servlet-name>
+        <servlet-class>Bean.CadastroUsuarioServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>ServletUsuarioLogin</servlet-name>
-        <servlet-class>Bean.ServletUsuarioLogin</servlet-class>
+        <servlet-name>LoginUsuarioServlet</servlet-name>
+        <servlet-class>Bean.LoginUsuarioServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>ServletUsuarioDeslogar</servlet-name>
-        <servlet-class>Bean.ServletUsuarioDeslogar</servlet-class>
+        <servlet-name>DeslogarUsuarioServlet</servlet-name>
+        <servlet-class>Bean.DeslogarUsuarioServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>ServletUsuarioAlterar</servlet-name>
-        <servlet-class>Bean.ServletUsuarioDados</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>ServeltUsuarioAlterar</servlet-name>
-        <servlet-class>Bean.ServeltUsuarioAlterar</servlet-class>
+        <servlet-name>AlterarUsuarioServlet</servlet-name>
+        <servlet-class>Bean.AlterarUsuarioServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>ServletUsuarioCadastro</servlet-name>
+        <servlet-name>CadastroUsuarioServlet</servlet-name>
         <url-pattern>/CadUsuario</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>ServletUsuarioLogin</servlet-name>
+        <servlet-name>LoginUsuarioServlet</servlet-name>
         <url-pattern>/LoginUsuario</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>ServletUsuarioDeslogar</servlet-name>
+        <servlet-name>DeslogarUsuarioServlet</servlet-name>
         <url-pattern>/DeslogarUsuario</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>ServeltUsuarioAlterar</servlet-name>
+        <servlet-name>AlterarUsuarioServlet</servlet-name>
         <url-pattern>/AltUsuario</url-pattern>
     </servlet-mapping>
 </web-app>

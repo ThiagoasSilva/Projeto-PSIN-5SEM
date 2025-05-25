@@ -18,7 +18,7 @@ import jakarta.servlet.http.HttpSession;
  *
  * @author thiagosilva
  */
-public class ServletUsuarioLogin extends HttpServlet {
+public class LoginUsuarioServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
