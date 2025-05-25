@@ -52,7 +52,7 @@
             <div class="user-info-section">
                 <p class="welcome-message success-message">Bem vindo, <strong><%=session.getAttribute("nome")%></strong>!</p>
               
-                <a href="#" data-toggle="modal" data-target="#modalCadastrar" class="btn btn-primary btn-add-news">Cadastrar Veículo</a>
+                <a href="VeiculoCadastroView.jsp" data-toggle="modal" data-target="#modalCadastrar" class="btn btn-primary btn-add-news">Cadastrar Veículo</a>
             </div>
             <% } else {%>
             <div class="user-info-section">
