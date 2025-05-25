@@ -15,7 +15,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.format.DateTimeParseException;
-import java.util.Date;
+import java.sql.Date;
 
 /**
  *
