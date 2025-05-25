@@ -23,7 +23,7 @@
                     <li><a href="catalogo.html">Catálogo</a></li>
                     <li><a href="sobre.html">Sobre Nós</a></li>
                     <li><a href="contato.html">Contato</a></li>
-                </ul>í
+                </ul>
                 <div class="nav-buttons">
                     <a href="UsuarioLoginView.jsp" class="btn">Login</a>
                     <a href="UsuarioCadastroView.jsp" class="btn btn-secondary">Cadastre-se</a>
