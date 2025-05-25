@@ -25,7 +25,7 @@
                     <li><a href="contato.html">Contato</a></li>
                 </ul>í
                 <div class="nav-buttons">
-                    <a href="UsuarioLoginView.html" class="btn">Login</a>
+                    <a href="UsuarioLoginView.jsp" class="btn">Login</a>
                     <a href="UsuarioCadastroView.jsp" class="btn btn-secondary">Cadastre-se</a>
                 </div>
             </nav>

@@ -12,16 +12,13 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.time.LocalDate;
-import java.time.ZoneId;
-import java.time.format.DateTimeParseException;
-import java.sql.Date;
+import jakarta.servlet.http.HttpSession;
 
 /**
  *
  * @author thiagosilva
  */
-public class ServletUsuarioCadastro extends HttpServlet {
+public class ServletUsuarioLogin extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,61 +34,26 @@ public class ServletUsuarioCadastro extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-
-            String cpf = request.getParameter("cpf");
             String email = request.getParameter("email");
             String senha = request.getParameter("senha");
-            String rg = request.getParameter("rg");
-            String nome = request.getParameter("nome");
-            String idadeStr = request.getParameter("idade");
-            String nascimentoStr = request.getParameter("nascimento");
 
             Usuario usuario = new Usuario();
-
-            usuario.setCpf(cpf);
             usuario.setEmail(email);
             usuario.setSenha(senha);
-            usuario.setRg(rg);
-            usuario.setNome(nome);
-            usuario.setAcesso("cliente");
 
-            int idade = 0;
-            if (idadeStr != null && !idadeStr.isEmpty()) {
-                idade = Integer.parseInt(idadeStr);
-            }
-            usuario.setIdade(idade);
-
-            Date nascimentoSqlDate = null;
-            if (nascimentoStr != null && !nascimentoStr.isEmpty()) {
-                try {
-                    LocalDate localDateNascimento = LocalDate.parse(nascimentoStr);
-
-                    // --- ALTERNATIVA DE CONVERSÃO PARA JAVA 7 OU COMO UMA OPÇÃO MAIS EXPLÍCITA ---
-                    // 1. Converte LocalDate para java.util.Date (com um instante no tempo)
-                    java.util.Date utilDate = java.util.Date.from(localDateNascimento.atStartOfDay(ZoneId.systemDefault()).toInstant());
-
-                    // 2. Converte java.util.Date para java.sql.Date
-                    nascimentoSqlDate = new Date(utilDate.getTime());
-                    // OU, uma forma mais direta de LocalDate para java.sql.Date (se seu Java for 8+)
-                    // nascimentoSqlDate = java.sql.Date.valueOf(localDateNascimento); // A linha que você está tentando fazer funcionar
-
-                } catch (Exception e) { // Pegar uma exceção mais genérica por enquanto, para debug
-                    System.out.println("Erro ao converter data de nascimento: " + e.getMessage());
-                    // Dependendo do seu requisito, você pode setar nascimentoSqlDate como null,
-                    // ou retornar um erro para o usuário.
-                }
-            }
-            usuario.setNascimento(nascimentoSqlDate);
             LoginDao loginDao = new LoginDao();
-            boolean sucesso = loginDao.inserirLogin(usuario);
 
-            if (sucesso) {
-                // Redireciona com mensagem de sucesso na URL
-                response.sendRedirect("UsuarioLoginView.jsp?mensagem=Cadastro%20realizado%20com%20sucesso!");
+            Usuario usuarioBuscado = loginDao.validarLogin(email, senha);
+
+            if (usuarioBuscado.getEmail() != null) {
+                HttpSession session = request.getSession();
+                session.setAttribute("email", usuarioBuscado.getEmail());
+                session.setAttribute("idUsuario", usuarioBuscado.getIdUsuario());
+                request.getRequestDispatcher("index.jsp?login%20bem%20sussedido").forward(request, response);
             } else {
-                // Redireciona com mensagem de erro na URL
-                response.sendRedirect("UsuarioCadastroView.jsp?mensagem=Erro%20ao%20realizar%20o%20cadastro");
+                request.getRequestDispatcher("UsuarioLoginView.jsp?login%20invalido").forward(request, response);
             }
+
         }
     }
 
@@ -133,4 +95,5 @@ public class ServletUsuarioCadastro extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+
 }
