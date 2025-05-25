@@ -32,7 +32,7 @@
                                     <input type="radio" id="cliente" name="acesso" value="Cliente" checked>
                                     <label for="cliente">Cliente</label>
                                     
-                                    <input type="radio" id="admin" name="acesso" value="Admin">
+                                    <input type="radio" id="admin" name="acesso" value="Administrador">
                                     <label for="admin">Admin</label>
                                 </div>
                             </div>

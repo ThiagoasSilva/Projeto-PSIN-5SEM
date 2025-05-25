@@ -55,21 +55,19 @@ public class ServletUsuarioCadastro extends HttpServlet {
             usuario.setRg(rg);
             usuario.setNome(nome);
             //usuario.setAcesso("cliente");
-            String acessoStr = request.getParameter("acesso"); // Obtém a String "Administrador" ou "Cliente" do HTML
+            String acessoStr = request.getParameter("acesso");
 
-            // --- Início das Alterações para Acesso ---
+            // --- Início: Tratamento e Set do Acesso ---
+            Acesso acesso = null; // Inicialize como null
             if (acessoStr == null || acessoStr.isEmpty()) {
                 request.setAttribute("mensagemErro", "Tipo de Acesso deve ser selecionado.");
                 request.getRequestDispatcher("UsuarioCadastroView.jsp").forward(request, response);
                 return;
             }
 
-            Acesso tipoAcesso;
             try {
-                // PASSO 2: Converter a String do formulário para o tipo Acesso usando fromString()
-                tipoAcesso = Acesso.fromString(acessoStr);
+                acesso = Acesso.fromString(acessoStr);
             } catch (IllegalArgumentException e) {
-                // Captura se a string do acesso for inválida (ex: não "Administrador" nem "Cliente")
                 request.setAttribute("mensagemErro", "Tipo de acesso inválido selecionado: " + acessoStr + ". Por favor, escolha 'Cliente' ou 'Administrador'.");
                 System.err.println("Erro ao converter string de acesso '" + acessoStr + "' para enum Acesso: " + e.getMessage());
                 request.getRequestDispatcher("UsuarioCadastroView.jsp").forward(request, response);
@@ -103,6 +101,7 @@ public class ServletUsuarioCadastro extends HttpServlet {
                 }
             }
             usuario.setNascimento(nascimentoSqlDate);
+            usuario.setAcesso(acesso);
             LoginDao loginDao = new LoginDao();
             boolean sucesso = loginDao.inserirLogin(usuario);
 
