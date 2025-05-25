@@ -20,7 +20,7 @@
                 </div>
                 <ul class="nav-links">
                     <li><a href="index.jsp">Início</a></li>
-                    <li><a href="catalogo.jsp">Catálogo</a></li>
+                    <li><a href="VeiculoListaView.jsp">Catálogo</a></li>
                     <li><a href="sobre.jsp">Sobre Nós</a></li>
                     <li><a href="contato.jsp">Contato</a></li>
                     <li><a href="UsuarioAlterarView.jsp">Alterar dados</a></li>

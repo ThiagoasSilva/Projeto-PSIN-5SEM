@@ -60,7 +60,7 @@
                 </div>
                 <% }%>
 
-                <form action="CadastrarVeiculoServlet" method="post" class="cadastro-form">
+                <form action="CadVeiculo" method="post" class="cadastro-form">
                     <div class="textfield">
                         <label for="categoriaVeiculo">Categoria do Veículo:</label>
                         <select id="categoriaVeiculo" name="categoriaVeiculo" required>

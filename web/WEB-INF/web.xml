@@ -16,6 +16,14 @@
         <servlet-name>AlterarUsuarioServlet</servlet-name>
         <servlet-class>Bean.AlterarUsuarioServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>VeiculoCadastroServlet</servlet-name>
+        <servlet-class>Bean.VeiculoCadastroServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>VeiculoListarServlet</servlet-name>
+        <servlet-class>Bean.VeiculoListarServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>CadastroUsuarioServlet</servlet-name>
         <url-pattern>/CadUsuario</url-pattern>
@@ -31,5 +39,13 @@
     <servlet-mapping>
         <servlet-name>AlterarUsuarioServlet</servlet-name>
         <url-pattern>/AltUsuario</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>VeiculoCadastroServlet</servlet-name>
+        <url-pattern>/CadVeiculo</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>VeiculoListarServlet</servlet-name>
+        <url-pattern>/ListaVeiculo</url-pattern>
     </servlet-mapping>
 </web-app>

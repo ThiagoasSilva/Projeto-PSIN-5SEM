@@ -1,0 +1,42 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this template
+*/
+/* 
+    Created on : 25 de mai. de 2025, 20:10:06
+    Author     : thiagosilva
+*/
+body {
+    font-family: Arial, sans-serif;
+    background-color: #F2F2F2;
+    margin: 0;
+    padding: 20px;
+}
+.container {
+    max-width: 1100px;
+    margin: auto;
+}
+h2 {
+    text-align: center;
+}
+.grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+.card {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    padding: 20px;
+    width: 300px;
+}
+.card h3 {
+    margin: 0 0 10px;
+    font-size: 20px;
+}
+.card p {
+    margin: 5px 0;
+    font-size: 14px;
+}

@@ -9,5 +9,9 @@ package Enuns;
  * @author thiagosilva
  */
 public enum CategoriaVeiculo {
-    Carro, Motocicleta, Caminhão, Outros
+    CARRO, MOTO;
+
+    public static CategoriaVeiculo fromString(String categoria) {
+        return CategoriaVeiculo.valueOf(categoria.toUpperCase());
+    }
 }
