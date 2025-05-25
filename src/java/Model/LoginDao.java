@@ -87,4 +87,46 @@ public class LoginDao extends DAO {
         }
         return usuarioAutenticado;
     }
+
+    public Usuario buscarIdUsuario(int id) throws Exception {
+        Usuario usuario = new Usuario();
+        
+        String query = "SELECT idUsuario, nome, email, cpf, rg, idade, nascimento, acesso FROM usuario WHERE idUsuario = ?";
+
+        try (Connection con = getConnection(); 
+                PreparedStatement pst = con.prepareStatement(sql)) {
+
+            pst.setInt(1, id);
+
+            try (ResultSet rs = pst.executeQuery()) {
+                if (rs.next()) {
+                    usuario = new Usuario();
+                    usuario.setIdUsuario(rs.getInt("idUsuario"));
+                    usuario.setNome(rs.getString("nome"));
+                    usuario.setEmail(rs.getString("email"));
+                    // segrança de senha
+                    usuario.setCpf(rs.getString("cpf"));
+                    usuario.setRg(rs.getString("rg"));
+                    usuario.setIdade(rs.getInt("idade"));
+                    usuario.setNascimento(rs.getDate("nascimento"));
+
+                    String acessoStrDoBanco = rs.getString("acesso");
+                    try {
+                        usuario.setAcesso(Acesso.fromString(acessoStrDoBanco));
+                    } catch (IllegalArgumentException e) {
+                        System.err.println("Aviso: Valor de acesso inválido no banco de dados para o usuário ID " + id + ": '" + acessoStrDoBanco + "'. Definindo acesso como Cliente.");
+                        usuario.setAcesso(Acesso.Cliente);
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            System.err.println("Erro SQL ao buscar usuário por ID: " + e.getMessage());
+            e.printStackTrace();
+            throw e;
+        } finally {
+            System.out.println("Execução da Query de busca por ID fechada");
+        }
+        return usuario;
+    }
+}
 }

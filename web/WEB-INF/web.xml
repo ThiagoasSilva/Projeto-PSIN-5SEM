@@ -12,6 +12,10 @@
         <servlet-name>ServletUsuarioDeslogar</servlet-name>
         <servlet-class>Bean.ServletUsuarioDeslogar</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ServletUsuarioAlterar</servlet-name>
+        <servlet-class>Bean.ServletUsuarioDados</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ServletUsuarioCadastro</servlet-name>
         <url-pattern>/CadUsuario</url-pattern>
@@ -23,5 +27,9 @@
     <servlet-mapping>
         <servlet-name>ServletUsuarioDeslogar</servlet-name>
         <url-pattern>/DeslogarUsuario</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletUsuarioDados</servlet-name>
+        <url-pattern>/DadosUsuario</url-pattern>
     </servlet-mapping>
 </web-app>
