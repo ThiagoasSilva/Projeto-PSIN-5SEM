@@ -39,7 +39,7 @@
         <div class="main-login">
             <div class="left-login">
                 <h1>Entre com sua conta</h1>
-                <img src="assets/img/login-img.svg" class="left-login-img" alt="Ilustração de correção de gramática">
+                <img src="assets/img/antonios-logo.png" class="left-login-img" alt="Ilustração de correção de gramática">
             </div>
             <div class="right-login">
                 <div class="card-login">
