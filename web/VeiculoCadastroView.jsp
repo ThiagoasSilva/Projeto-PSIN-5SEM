@@ -10,6 +10,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Cadastrar Veículo - Agiliza Veículos</title>
+        <link rel="icon" type="image/x-icon" href="assets/img/antonios-logo.png">
         <link rel="stylesheet" href="assets/style/index.css"/> 
         <link rel="stylesheet" href="assets/style/VeiculoCadastroView.css"/>
     </head>

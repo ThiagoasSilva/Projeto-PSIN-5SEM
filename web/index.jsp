@@ -10,12 +10,14 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Home</title>
+        <link rel="icon" type="image/x-icon" href="assets/img/antonios-logo.png">
         <link rel="stylesheet" href="assets/style/index.css"/>
     </head>
     <body>
         <header>
             <nav class="navbar">
                 <div class="logo">
+                    <img src="assets/img/antonios-logo.png" alt="logotipo" width="50px" height="50px" />
                     <a href="index.jsp">Agiliza Veículos</a>
                 </div>
                 <ul class="nav-links">

@@ -8,7 +8,7 @@ body {
 
 /* Header e Navbar */
 header {
-    background-color: #1d2949; /* Cor de fundo da navbar */
+    background-color: #091d58; /* Cor de fundo da navbar */
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     position: sticky; /* Navbar fixa no topo */
     top: 0;
