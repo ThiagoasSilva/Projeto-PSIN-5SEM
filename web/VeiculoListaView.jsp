@@ -90,25 +90,26 @@
                                     <p><strong>Placa:</strong> ${v.placa}</p>
                                     <p><strong>Chassi:</strong> ${v.chassi}</p>
                                     <a href="#" class="btn btn-details">Ver Detalhes</a>
-                                    <% if (isAdmin) { %>
-                                    <div class="admin-buttons">
-                                        <a href="VeiculoAlterarView.jsp?placa=${v.placa}" class="btn car-btn-edit">Alterar</a>
-                                        <a href="ExcluirVeiculo?placa=${v.placa}" class="btn car-btn-delete"
-                                           onclick="return confirm('Tem certeza que deseja excluir este veículo?');">Excluir</a>
-                                    </div>
-                                    <% }%>
                                 </div>
-                            </c:forEach>
-                        </c:when>
-                        <c:otherwise>
-                            <p class="no-vehicles-message">Nenhum veículo cadastrado ainda. <a href="VeiculoCadastroView.jsp">Cadastre um novo veículo aqui.</a></p>
-                        </c:otherwise>
-                    </c:choose>
-                </div>
+                                <% if (isAdmin) { %>
+                                <div class="admin-buttons">
+                                    <a href="VeiculoAlterarView.jsp?placa=${v.placa}" class="btn car-btn-edit">Alterar</a>
+                                    <a href="ExcluirVeiculo?placa=${v.placa}" class="btn car-btn-delete"
+                                       onclick="return confirm('Tem certeza que deseja excluir este veículo?');">Excluir</a>
+                                </div>
+                                <% }%>
+                            </div>
+                        </c:forEach>
+                    </c:when>
+                    <c:otherwise>
+                        <p class="no-vehicles-message">Nenhum veículo cadastrado ainda. <a href="VeiculoCadastroView.jsp">Cadastre um novo veículo aqui.</a></p>
+                    </c:otherwise>
+                </c:choose>
+            </div>
 
-                <div style="text-align:center; margin-top: 30px; margin-bottom: 30px;">
-                    <a href="VeiculoCadastroView.jsp" class="btn btn-primary">Cadastrar novo veículo</a>
-                </div>
+            <div style="text-align:center; margin-top: 30px; margin-bottom: 30px;">
+                <a href="VeiculoCadastroView.jsp" class="btn btn-primary">Cadastrar novo veículo</a>
+            </div>
         </main>
 
         <footer>
