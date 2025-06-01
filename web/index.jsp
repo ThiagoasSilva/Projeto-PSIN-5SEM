@@ -25,7 +25,7 @@
                     <li><a href="ListaVeiculo">Catálogo</a></li>
                     <li><a href="sobre.jsp">Sobre Nós</a></li>
                     <li><a href="contato.jsp">Contato</a></li>
-                    <li><a href="UsuarioAlterarView.jsp">Alterar dados</a></li>
+                    <li><a href="AltUsuario">Alterar dados</a></li>
                 </ul>
                 <div class="nav-auth-buttons">
                     <%
@@ -49,7 +49,7 @@
         <main class="content-wrapper"> 
             <% if (logado) {%>
             <div class="user-info-section">
-                <p class="welcome-message success-message">Bem vindo, <strong><%=session.getAttribute("nome")%></strong>!</p>
+                <p class="welcome-message success-message">Bem vindo, <strong><%=session.getAttribute("acesso")%></strong>!</p>
 
                 <%-- AQUI ESTÁ A MUDANÇA PRINCIPAL: SÓ MOSTRA O BOTÃO SE FOR ADMIN --%>
                 <% if (isAdmin) {%>
