@@ -35,9 +35,6 @@ public class ManterVeiculo extends DAO {
             pst.setString(12, veiculo.getPlaca());
             pst.setString(13, veiculo.getChassi());
 
-            pst.executeUpdate();
-            fecharBanco();
-
             int linhasAfetadas = pst.executeUpdate();
 
             return linhasAfetadas > 0;

@@ -61,7 +61,7 @@
                 </div>
                 <% }%>
 
-                <form action="CadVeiculo" method="post" class="cadastro-form">
+                <form action="${pageContext.request.contextPath}/CadVeiculo" method="post" class="cadastro-form">
                     <div class="textfield">
                         <label for="categoriaVeiculo">Categoria do Veículo:</label>
                         <select id="categoriaVeiculo" name="categoriaVeiculo" required>

@@ -19,7 +19,6 @@ import java.util.List;
  *
  * @author thiagosilva
  */
-
 public class VeiculoListarServlet extends HttpServlet {
 
     /**
@@ -35,17 +34,16 @@ public class VeiculoListarServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            
+
             try {
-            ManterVeiculo veiculoDao = new ManterVeiculo();
-            List<Veiculo> lista = veiculoDao.listarVeiculos();
+                ManterVeiculo veiculoDao = new ManterVeiculo();
+                List<Veiculo> lista = veiculoDao.listarVeiculos();
 
-            request.setAttribute("veiculos", lista);
-        } catch (Exception e) {
-            request.setAttribute("mensagemErro", "Erro ao listar veículos: " + e.getMessage());
-        }
-
-          request.getRequestDispatcher("VeiculoCadastroView.jsp").forward(request, response);
+                request.setAttribute("veiculos", lista);
+            } catch (Exception e) {
+                request.setAttribute("mensagemErro", "Erro ao listar veículos: " + e.getMessage());
+            }
+            request.getRequestDispatcher("VeiculoListaView.jsp").forward(request, response);
         }
     }
 

@@ -33,7 +33,7 @@ public class VeiculoCadastroServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
+
         try (PrintWriter out = response.getWriter()) {
             Veiculo veiculo = new Veiculo();
             veiculo.setCategoriaVeiculo(CategoriaVeiculo.fromString(request.getParameter("categoriaVeiculo")));
@@ -52,14 +52,20 @@ public class VeiculoCadastroServlet extends HttpServlet {
 
             // Aqui você chamaria a classe DAO para salvar no banco de dados
             ManterVeiculo veiculoDao = new ManterVeiculo();
-            veiculoDao.inserirVeiculo(veiculo);
+            // Agora o retorno de inserirVeiculo será confiável
+            boolean inseridoComSucesso = veiculoDao.inserirVeiculo(veiculo);
 
-            request.setAttribute("mensagemSucesso", "Veículo cadastrado com sucesso!");
+            if (inseridoComSucesso) {
+                request.setAttribute("mensagemSucesso", "Veículo cadastrado com sucesso!");
+            } else {
+                request.setAttribute("mensagemErro", "Não foi possível cadastrar o veículo. Tente novamente.");
+            }
         } catch (Exception e) {
             request.setAttribute("mensagemErro", "Erro ao cadastrar veículo: " + e.getMessage());
+            e.printStackTrace();
+        } finally {
+            request.getRequestDispatcher("ListaVeiculo").forward(request, response);
         }
-
-        request.getRequestDispatcher("VeiculoListaView.jsp").forward(request, response);
 
     }
 
