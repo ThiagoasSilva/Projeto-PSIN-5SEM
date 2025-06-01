@@ -97,7 +97,7 @@
                     <div class="textfield">
                         <label for="nome">Nome Completo:</label>
 
-                        <input type="text" id="nome" name="nome" value="<%= usuario.getNome() %>" placeholder="Seu nome completo" required>
+                        <input type="text" id="nome" name="nome" value="<%= nome%>" placeholder="Seu nome completo" required>
                     </div>
 
                     <div class="textfield">
