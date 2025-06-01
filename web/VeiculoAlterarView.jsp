@@ -63,7 +63,7 @@
                 <%
                     Veiculo veiculo = (Veiculo) request.getAttribute("veiculo");
 
-                    int id = veiculo != null ? veiculo.getIdVeiculo() : 0;
+                    int idVeiculo = veiculo != null ? veiculo.getIdVeiculo() : 0;
                     String categoria = veiculo != null && veiculo.getCategoriaVeiculo() != null ? veiculo.getCategoriaVeiculo().name() : "";
                     String marca = veiculo != null ? veiculo.getMarca() : "";
                     String modelo = veiculo != null ? veiculo.getModelo() : "";
@@ -80,7 +80,7 @@
                 %>
 
                 <form action="AltVeiculo" method="post" class="cadastro-form">
-                    <input type="hidden" name="idVeiculo" value="<%= id%>">
+                    <input type="hidden" name="idVeiculo" value="<%= idVeiculo%>">
 
                     <div class="textfield">
                         <label for="categoriaVeiculo">Categoria do Veículo:</label>
@@ -88,9 +88,6 @@
                             <option value="">Selecione a Categoria</option>
                             <option value="CARRO" <%= "CARRO".equals(categoria) ? "selected" : ""%>>Carro</option>
                             <option value="MOTO" <%= "MOTO".equals(categoria) ? "selected" : ""%>>Moto</option>
-                            <option value="CAMINHAO" <%= "CAMINHAO".equals(categoria) ? "selected" : ""%>>Caminhão</option>
-                            <option value="ONIBUS" <%= "ONIBUS".equals(categoria) ? "selected" : ""%>>Ônibus</option>
-                            <option value="VAN" <%= "VAN".equals(categoria) ? "selected" : ""%>>Van</option>
                         </select>
                     </div>
 

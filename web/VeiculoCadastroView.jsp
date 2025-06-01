@@ -68,9 +68,7 @@
                             <option value="">Selecione a Categoria</option>
                             <option value="CARRO">Carro</option>
                             <option value="MOTO">Moto</option>
-                            <option value="CAMINHAO">Caminhão</option>
-                            <option value="ONIBUS">Ônibus</option>
-                            <option value="VAN">Van</option>
+
                         </select>
                     </div>
 
