@@ -16,7 +16,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Catálogo de Veículos - Agiliza Veículos</title>
         <link rel="icon" type="image/x-icon" href="assets/img/antonios-logo.png">
-        <link rel="stylesheet" href="assets/style/index.css"/>
+        <!-- <link rel="stylesheet" href="assets/style/index.css"/> -->
         <link rel="stylesheet" href="assets/style/VeiculoListaView.css"/>
     </head>
     <body>
