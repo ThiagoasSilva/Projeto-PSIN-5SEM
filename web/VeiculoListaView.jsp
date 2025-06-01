@@ -20,6 +20,8 @@
         <link rel="stylesheet" href="assets/style/VeiculoListaView.css"/>
     </head>
     <body>
+
+
         <header>
             <nav class="navbar">
                 <div class="logo">
@@ -35,6 +37,8 @@
                 <div class="nav-auth-buttons">
                     <%
                         boolean logado = session.getAttribute("nome") != null;
+                        Enuns.Acesso acessoUsuario = (Enuns.Acesso) session.getAttribute("acesso");
+                        boolean isAdmin = logado && acessoUsuario == Enuns.Acesso.Administrador;
                     %>
 
                     <% if (logado) {%>
@@ -52,9 +56,8 @@
                 <h2>Nosso Catálogo de Veículos</h2>
             </div>
 
-            <%-- Exibição de mensagens (erro/sucesso) --%>
             <% String mensagemErro = (String) request.getAttribute("mensagemErro");
-               String mensagemSucesso = (String) request.getAttribute("mensagemSucesso");
+                String mensagemSucesso = (String) request.getAttribute("mensagemSucesso");
             %>
             <% if (mensagemErro != null) {%>
             <div class="info-message error-message">
@@ -87,19 +90,25 @@
                                     <p><strong>Placa:</strong> ${v.placa}</p>
                                     <p><strong>Chassi:</strong> ${v.chassi}</p>
                                     <a href="#" class="btn btn-details">Ver Detalhes</a>
+                                    <% if (isAdmin) { %>
+                                    <div class="admin-buttons">
+                                        <a href="VeiculoAlterarView.jsp?placa=${v.placa}" class="btn car-btn-edit">Alterar</a>
+                                        <a href="ExcluirVeiculo?placa=${v.placa}" class="btn car-btn-delete"
+                                           onclick="return confirm('Tem certeza que deseja excluir este veículo?');">Excluir</a>
+                                    </div>
+                                    <% }%>
                                 </div>
-                            </div>
-                        </c:forEach>
-                    </c:when>
-                    <c:otherwise>
-                        <p class="no-vehicles-message">Nenhum veículo cadastrado ainda. <a href="VeiculoCadastroView.jsp">Cadastre um novo veículo aqui.</a></p>
-                    </c:otherwise>
-                </c:choose>
-            </div>
+                            </c:forEach>
+                        </c:when>
+                        <c:otherwise>
+                            <p class="no-vehicles-message">Nenhum veículo cadastrado ainda. <a href="VeiculoCadastroView.jsp">Cadastre um novo veículo aqui.</a></p>
+                        </c:otherwise>
+                    </c:choose>
+                </div>
 
-            <div style="text-align:center; margin-top: 30px; margin-bottom: 30px;">
-                <a href="VeiculoCadastroView.jsp" class="btn btn-primary">Cadastrar novo veículo</a>
-            </div>
+                <div style="text-align:center; margin-top: 30px; margin-bottom: 30px;">
+                    <a href="VeiculoCadastroView.jsp" class="btn btn-primary">Cadastrar novo veículo</a>
+                </div>
         </main>
 
         <footer>

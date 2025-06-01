@@ -51,7 +51,6 @@
             <div class="user-info-section">
                 <p class="welcome-message success-message">Bem vindo, <strong><%=session.getAttribute("acesso")%></strong>!</p>
 
-                <%-- AQUI ESTÁ A MUDANÇA PRINCIPAL: SÓ MOSTRA O BOTÃO SE FOR ADMIN --%>
                 <% if (isAdmin) {%>
                 <a href="VeiculoCadastroView.jsp" data-toggle="modal" data-target="#modalCadastrar" class="btn btn-primary btn-add-news">Cadastrar Veículo</a>
                 <% } %>
