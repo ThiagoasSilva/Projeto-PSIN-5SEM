@@ -33,7 +33,7 @@ public class LoginUsuarioServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-     
+
             String email = request.getParameter("email");
             String senha = request.getParameter("senha");
 
@@ -50,6 +50,7 @@ public class LoginUsuarioServlet extends HttpServlet {
                 session.setAttribute("email", usuarioBuscado.getEmail());
                 session.setAttribute("idUsuario", usuarioBuscado.getIdUsuario());
                 session.setAttribute("nome", usuarioBuscado.getNome());
+                session.setAttribute("acesso", usuarioBuscado.getAcesso());
                 request.getRequestDispatcher("index.jsp?login%20bem%20sussedido").forward(request, response);
             } else {
                 request.getRequestDispatcher("UsuarioLoginView.jsp?login%20invalido").forward(request, response);
