@@ -167,4 +167,18 @@ public class ManterVeiculo extends DAO {
             return false;
         }
     }
+
+    public void deletarVeiculo(Veiculo veiculo) {
+        try {
+            abrirBanco();
+            String query = "DELETE FROM veiculo WHERE idVeiculo = ?";
+            pst = con.prepareStatement(query);
+            pst.setInt(1, veiculo.getIdVeiculo());
+            pst.execute();
+            fecharBanco();
+
+        } catch (Exception e) {
+            System.out.println("Erro " + e.getMessage());
+        }
+    }
 }

@@ -93,8 +93,8 @@
                                 </div>
                                 <% if (isAdmin) { %>
                                 <div class="admin-buttons">
-                                    <a href="VeiculoAlterarView.jsp?placa=${v.placa}" class="btn car-btn-edit">Alterar</a>
-                                    <a href="ExcluirVeiculo?placa=${v.placa}" class="btn car-btn-delete"
+                                    <a href="AltVeiculo?idVeiculo=${v.idVeiculo}" class="btn car-btn-edit">Alterar</a>
+                                    <a href="DelVeiculo?idVeiculo=${v.idVeiculo}" class="btn car-btn-delete"
                                        onclick="return confirm('Tem certeza que deseja excluir este veículo?');">Excluir</a>
                                 </div>
                                 <% }%>
