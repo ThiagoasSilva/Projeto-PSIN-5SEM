@@ -98,11 +98,11 @@ public class AlterarVeiculoServlet extends HttpServlet {
             boolean sucesso = manterVeiculo.alterarVeiculo(veiculo);
 
             if (sucesso) {
-                response.sendRedirect("ListaVeiculo?mensagem=Veículo%20alterado%20com%20sucesso!");
+                response.sendRedirect("AltVeiculo?mensagem=Veículo%20alterado%20com%20sucesso!");
             } else {
                 request.setAttribute("mensagemErro", "Erro ao alterar veículo.");
                 request.setAttribute("veiculo", veiculo);
-                request.getRequestDispatcher("VeiculoAlterarView.jsp").forward(request, response);
+                request.getRequestDispatcher("ListaVeiculo").forward(request, response);
 
             }
         }

@@ -163,9 +163,11 @@ public class ManterVeiculo extends DAO {
             return linhasAfetadas > 0;
 
         } catch (Exception e) {
-            System.out.println("Erro ao fechar recursos (alterarVeiculo): " + e.getMessage());
+            System.out.println("Erro ao alterar veículo: " + e.getMessage());
+            e.printStackTrace();
             return false;
         }
+
     }
 
     public void deletarVeiculo(Veiculo veiculo) {
