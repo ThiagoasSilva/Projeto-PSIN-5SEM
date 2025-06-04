@@ -89,7 +89,8 @@
                                     <p><strong>Ano:</strong> ${v.anoFabricacao}/${v.anoModelo}</p>
                                     <p><strong>Placa:</strong> ${v.placa}</p>
                                     <p><strong>Chassi:</strong> ${v.chassi}</p>
-                                    <a href="#" class="btn btn-details">Ver Detalhes</a>
+                                    <a href="DetalheVeiculo?idVeiculo=${v.idVeiculo}" class="btn btn-details">Ver Detalhes</a>
+
                                 </div>
                                 <% if (isAdmin) { %>
                                 <div class="admin-buttons">

@@ -32,6 +32,10 @@
         <servlet-name>DeletarVeiculoServlet</servlet-name>
         <servlet-class>Bean.DeletarVeiculoServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>VeiculoDetalhesServlet</servlet-name>
+        <servlet-class>Bean.VeiculoDetalhesServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>CadastroUsuarioServlet</servlet-name>
         <url-pattern>/CadUsuario</url-pattern>
@@ -63,5 +67,9 @@
     <servlet-mapping>
         <servlet-name>DeletarVeiculoServlet</servlet-name>
         <url-pattern>/DelVeiculo</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>VeiculoDetalhesServlet</servlet-name>
+        <url-pattern>/DetalheVeiculo</url-pattern>
     </servlet-mapping>
 </web-app>
