@@ -14,6 +14,8 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -56,6 +58,15 @@ public class VeiculoCadastroServlet extends HttpServlet {
             boolean inseridoComSucesso = veiculoDao.inserirVeiculo(veiculo);
 
             if (inseridoComSucesso) {
+                response.sendRedirect("ListaVeiculo?Cadastro realizadocom sucesso");
+            } else {
+                response.sendRedirect("VeiculoListaView.jsp?Erro ao cadastrar veiculo");
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(VeiculoCadastroServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        /*
+            if (inseridoComSucesso) {
                 request.setAttribute("mensagemSucesso", "Veículo cadastrado com sucesso!");
             } else {
                 request.setAttribute("mensagemErro", "Não foi possível cadastrar o veículo. Tente novamente.");
@@ -66,7 +77,7 @@ public class VeiculoCadastroServlet extends HttpServlet {
         } finally {
             request.getRequestDispatcher("ListaVeiculo").forward(request, response);
         }
-
+         */
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
