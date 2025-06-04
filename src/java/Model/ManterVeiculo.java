@@ -57,7 +57,7 @@ public class ManterVeiculo extends DAO {
         List<Veiculo> lista = new ArrayList<>();
         try {
             abrirBanco();
-            String sql = "SELECT * FROM veiculo";
+            String sql = "SELECT * FROM veiculo order by idVeiculo desc"; //trazendo os veiculos recem inseridos primeiro na lista
             pst = con.prepareStatement(sql);
             rs = pst.executeQuery();
 
